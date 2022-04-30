@@ -1,9 +1,11 @@
 class CostumesController < ApplicationController
 
   before_action :set_costume, only: [:show, :edit, :update, :destroy]
+  def home
+  end
 
   def index
-    @Costumes = Costume.all
+    @costumes = Costume.all
   end
 
 
