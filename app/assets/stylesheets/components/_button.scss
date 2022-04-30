@@ -4,10 +4,10 @@
   border-radius: 4px;
   font-weight: bold;
   transition: background 0.3s ease;
-  border: 1px solid $green;
+  background-color:$green ;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(#147EFF, #0F67DA);
+  background-color: $yellow;
   color: white;
 }
