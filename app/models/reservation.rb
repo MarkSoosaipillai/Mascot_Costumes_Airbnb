@@ -6,4 +6,5 @@ class Reservation < ApplicationRecord
   validates :start_date, :end_date =>  {after: =>Time.now}
   validates :end_date => {after: :start_date}
   validates :user_id, :costume_id, :status, :start_date, :end_date, presence:true
+  validates :message, :type => text
 end
