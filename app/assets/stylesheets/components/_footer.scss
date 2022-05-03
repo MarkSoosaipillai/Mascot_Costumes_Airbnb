@@ -3,10 +3,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
   height: 100px;
+  bottom: 0;
+  width: 100%;
   padding: 0px 50px;
   color: $orange (38, 35, 35, 0.3);
 }
+
 .footer-links {
   display: flex;
   align-items: center;

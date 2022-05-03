@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts "Creating costumes ..."
+
+Costume.create(
+  name: "Pokemon",
+  descr: "Nice costume, perfect state",
+  price: 25,
+  size: "medium",
+  category: "animal",
+  user_id: 2
+)
+
+puts "Finished!"
