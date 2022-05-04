@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   root to: 'costumes#home'
   get '/costumes/', to: 'costumes#index'
-  get '/costumes/:id', to: 'users#show'
+  get '/costumes/:id', to: 'costumes#show', as: :costume
+
   get '/users/:user_id/costumes', to: 'users#list_by_user'
   get '/costumes/new', to: 'users#new'
 
