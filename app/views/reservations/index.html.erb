@@ -1,0 +1,34 @@
+<h1>Your Current Rentals:</h1>
+
+<div>
+<% if current_user.admin %>
+  <h3>Filter Rentals:</h3>
+  <%= form_tag("/reservations", method: "get") do %>
+  	<%= label_tag "user_id", "User" %>
+    <%= select_tag "user_id", options_from_collection_for_select(@users, "id", "name"), include_blank: true %>
+    <%= label_tag "costume_id", "Costume" %>
+    <%= select_tag "costume_id", options_from_collection_for_select(@costumes, "id", "name"), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+
+  <div>
+  <ul>
+	<% @reservations.each do |reservation| %>
+		<li><%= link_to "#{reservation.costume.name}  -  Start Date: #{reservation.start_date}", reservation_path(reservation) %><br>
+	<% end %>
+  </ul>
+  </div>
+
+<% else %>
+	<div>
+	<ul>
+	<% @reservations.each do |reservation| %>
+		<li><%= link_to "#{reservation.costume.name}  -  Start Date: #{reservation.start_date}", reservation_path(reservation) %><br>
+	<% end %>
+	</ul>
+	</div>
+<% end %>
+</div>
+
+
+<br><br><%= link_to "Back to Your Account", user_path(current_user) %>
