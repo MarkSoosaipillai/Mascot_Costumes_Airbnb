@@ -94,3 +94,4 @@ def reservation_params
 end
 
 end
+end
