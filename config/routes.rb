@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'costumes#home'
   get '/costumes/', to: 'costumes#index'
-  get '/costumes/:id', to: 'users#show'
+  get '/costumes/:id', to: 'costumes#show', as: :costume
+
   get '/users/:user_id/costumes', to: 'users#list_by_user'
   get '/costumes/new', to: 'users#new'
 
