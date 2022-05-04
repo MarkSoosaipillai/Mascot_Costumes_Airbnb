@@ -12,16 +12,16 @@
       <ul class="navbar-nav me-auto">
         <%# if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Home", "#", class: "nav-link" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "All Costumes", "#", class: "nav-link" %>
+            <%= link_to "All Costumes", costumes_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
             <%= link_to "My Reservations", "#", class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to "Mark S", "#", class: "nav-link" %>
+            <%= link_to "Login: Mark S", "#", class: "nav-link" %>
           </li>
           <% if current_user %>
   <li><%= link_to "Sign out", destroy_user_session_path, method: :delete  %></li>

@@ -16,4 +16,12 @@ Rails.application.routes.draw do
   get '/my_costumes', to: 'users#my_costumes'
 
   delete '/costumes/:id', to: 'users#destroy'
+
+  get '/costumes/:costume_id/reservations/new', to: 'reservations#new'
+  post '/costumes/:costume_id/reservations', to: 'reservations#create'
+
+  get '/my_reservations/', to: 'reservations#my_reservations'
+  get '/my_requests', to: 'reservations#my_requests'
+  patch '/my_requests/:id', to: 'reservations#set_status'
+
 end

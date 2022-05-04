@@ -1,6 +1,22 @@
-
-  <h1>See all the costumes</h1>
-    <% @costumes.each do |costume|  %>
-    <%= costume.name %>
-    <%= costume.descr %>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="mt-6">
+      <h1>See all the costumes</h1>
+      <div class="cards my-5">
+        <% @costumes.each do |costume| %>
+          <div class="card-trip">
+            <%= image_tag "unicorn.jpg", alt:"unicorn" %>
+            <div class="card-trip-infos">
+              <div>
+                <h2><%= costume.name %></h2>
+                <p> <%= costume.descr %></p>
+              </div>
+                <h2 class="card-trip-pricing"><%= costume.price %>$</h2>
+                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
