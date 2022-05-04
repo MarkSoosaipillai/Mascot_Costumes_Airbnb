@@ -23,10 +23,11 @@ p user_ids_list = User.all.pluck(:id)
 
 
 puts "Creating new costumes"
-
+imageArray = ["chiitan.jpg", "ford.jpg", "gritty.jpg", "mickey.jpg", "unicorn.jpg"]
 10.times do
     p new_costume =  Costume.new(name: Faker::FunnyName.name, descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), price: rand(30..100),
-                                  size: %w(small medium large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0])
+                                  size: %w(small medium large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
+                                  image:imageArray.sample(1)[0])
     new_costume.save
 end
 
