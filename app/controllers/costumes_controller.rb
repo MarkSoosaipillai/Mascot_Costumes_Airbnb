@@ -1,5 +1,5 @@
 class CostumesController < ApplicationController
-
+  before_action :set_user
   before_action :set_costume, only: [:show, :edit, :update, :destroy]
   def home
   end
@@ -7,7 +7,6 @@ class CostumesController < ApplicationController
   def index
     @costumes = Costume.all
   end
-
 
   def show
   end
@@ -18,9 +17,13 @@ class CostumesController < ApplicationController
 
   def create
     @costume = Costume.new(costume_params)
-    @costume.save
+    @costume.user = @user
+    if @costume.save
+      redirect_to costume_path(@costume)
+    else
+      flash[:error] = "wrong inputs, try again"
+    end
     # no need for app/views/costumes/create.html.erb
-    redirect_to costume_path(@costume)
   end
 
   def update
@@ -49,4 +52,7 @@ class CostumesController < ApplicationController
     params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id)
   end
 
+  def set_user
+    @user = current_user
+  end
 end
