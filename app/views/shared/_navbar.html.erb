@@ -20,14 +20,15 @@
           <li class="nav-item">
             <%= link_to "My Reservations", "#", class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Login: Mark S", "#", class: "nav-link" %>
-          </li>
-        <%# else %>
-          <!--li class="nav-item"-->
-            <%#= link_to "Login", new_user_session_path, class: "nav-link" %>
-          <!--/li-->
-        <%# end %>
+          <% if current_user %>
+            <li>
+              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "nav-link ps-5"  %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "Login", new_user_registration_path, class: "nav-link ps-5" %>
+            </li>
+          <% end %>
       </ul>
     </div>
   </div>
