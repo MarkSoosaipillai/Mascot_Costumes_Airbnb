@@ -1,0 +1,6 @@
+<h2>Create a rental:</h2>
+<%= simple_form_for [@costume, @reservation] do |f| %>
+  <%= f.input :start_date, as: :date %>
+  <%= f.input :end_date, as: :date %>
+  <%= f.submit "Create rental", class: "btn btn-primary" %>
+<% end %>

@@ -1,34 +1,21 @@
-<h1>Your Current Rentals:</h1>
+<h1>My Current Rentals:</h1>
 
-<div>
-<% if current_user.admin %>
-  <h3>Filter Rentals:</h3>
-  <%= form_tag("/reservations", method: "get") do %>
-  	<%= label_tag "user_id", "User" %>
-    <%= select_tag "user_id", options_from_collection_for_select(@users, "id", "name"), include_blank: true %>
-    <%= label_tag "costume_id", "Costume" %>
-    <%= select_tag "costume_id", options_from_collection_for_select(@costumes, "id", "name"), include_blank: true %>
-    <%= submit_tag "Filter" %>
+<table style="table-layout: fixed; width: 70vw;">
+  <tr>
+    <th>Name</th>
+    <th>Start</th>
+    <th>End</th>
+    <th>Action</th>
+  </tr>
+  <% @reservations.each do |r| %>
+    <% if r.user == @user && r.status != "Canceled" %>
+      <tr>
+        <td><%= link_to r.costume.name, costume_path(r.costume) %></td>
+        <td><%= r.start_date %></td>
+        <td><%= r.end_date %></td>
+        <td><%= link_to "Cancel this reantal?", cancel_reservation_path(r), method: :patch,
+                data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
   <% end %>
-
-  <div>
-  <ul>
-	<% @reservations.each do |reservation| %>
-		<li><%= link_to "#{reservation.costume.name}  -  Start Date: #{reservation.start_date}", reservation_path(reservation) %><br>
-	<% end %>
-  </ul>
-  </div>
-
-<% else %>
-	<div>
-	<ul>
-	<% @reservations.each do |reservation| %>
-		<li><%= link_to "#{reservation.costume.name}  -  Start Date: #{reservation.start_date}", reservation_path(reservation) %><br>
-	<% end %>
-	</ul>
-	</div>
-<% end %>
-</div>
-
-
-<br><br><%= link_to "Back to Your Account", user_path(current_user) %>
+</table>

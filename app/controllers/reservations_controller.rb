@@ -1,97 +1,56 @@
 class ReservationsController < ApplicationController
+  before_action :find_booking, only: [:show, :edit, :update, :cancel]
+  before_action :find_user
+
 def index
-    @user = current_user
-    if @user.admin
-    # provide a list of users and costumes to the view for the filter control - only for admins
-    @users = User.all
-    @costumes = Costume.all
-    #filter reservations
-    if !params[:user_id].blank? && !params[:costume_id].blank?
-    @user = User.by_user(params[:user_id])
-    @costume = Costume.by_costume(params[:costume_id])
-    @reservations = Reservation.by_reservation_user_and_costume(@user.ids, @costume.ids)
-    elsif !params [:user_id].blank?
-        @user = User.by_user(params[:user_id])
-        @reservations = Reservation.by_reservation_user(@user.ids)
-    elsif !params [:costume_id].blank?
-        @costume = Costume.by_costume(params[:costume_id])
-        @reservations = Reservation.by_reservation_costume(@costume.ids)
-    else
-        @reservations = Reservation.all
-    end
-else
-    #Display all the User's reservations for a non-admin User
-    @reservations = User.find_by(id: @user_id).reservations
- end
+   @reservations = Reservation.all
 end
 
-def show
-    if session[:curren_useer_id]
-        @user = current_user
-        @reservation = Reservation.find_by(id: params[:id])
-    else
-        redirect_to '/login'
-    end
-end
+
+def show; end
 
 def new
     @reservation = Reservation.new
-    @user = current_user
-    #Sets the costume based on the costume#show where 'Rent/Reserve This Costume' link was cliked.
-    @costume = Costume.find_by(id: params[:costume][:costume_id])
+    @costume = Costume.find(params[:costume_id])
 end
 
 def create
-    #Creates initial Reservation from Costumes#show view page form
-    @reservation = Reservation.create(reservation_params)
-    @costume = Costume.find_by(id: params[:reservation][:costume_id])
-    @user = User.find_by(id: params[:reservation][:user_id])
-    #Renders the edit Reservation form for the user to finish filling out the Reservation details
-    render :edit
+    @reservation = Reservation.new(booking_params)
+    @reservation.user = @user
+    @reservation.costume = Costume.find(params[:costume_id])
+    @reservation.status = "Rented"
+ if @reservation.save!
+      redirect_to reservations_path
+else
+      render :new
+ end
 end
 
-def edit
-    #Only Admins can edit Reservations
-    @user = current_user
-    @reseravtion = Reservation.find_by(id: params[:id])
-    @costume = @reservation.costume
-    render :edit
-end
+def edit; end
 
 def update
-    @reservation  = Reservation.find_by(id: params[:id])
-    @costume = Costume.find_by(id: reservation_params[:costume_id])
-    @reservation.update(user_id: reservation_params[:user_id],
-                        costume_id: reservation_params[:costume_id],
-                        status: reservation_params[:status],
-                        start_date: reservation_params[:start_date],
-                        end_date: reservation_params[:end_date],
-                        message: reservation_params[:message],
-                        owner_id: reservation_params[:owner_id])
+    @reservation.update(reservation_params)
 
-if @reservation.start_date != nil && @reservation.end_date != nil
-
-if @reservation.valid?
-    flash[:succes] = "You have succesfully made your Rental Reservation!"
-    redirect_to reservation_path(@reseravtion)
-else
-    flash[:error] = "Please check your input data and try again."
-    redirect_to edit_reservation_path(@reseravtion)
-end
-    flash[:error] = "Please input a valid Start Date and End Date."
-    render :edit
+    redirect_to reservations_path
 end
 
-def destroy
-    Reservation.find_by(id: params[:id]).destroy
-    redirect_to user_path(current_user)
+def cancel
+    @reservation.status = "Canceled"
+    @reservation.save!
+    redirect_to reservations_path
 end
 
 private
 
 def reservation_params
-    params.require(:reservation).permit(:user_id, :costume_id, :status, :start_date, :end_date, :message, :owner_id)
+    params.require(:reservation).permit(:status, :start_date, :end_date)
 end
 
+def find_user
+    @user = current_user
+end
+
+def find_booking
+    @reservation = Reservation.find(params[:id])
 end
 end
