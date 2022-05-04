@@ -1,7 +1,17 @@
 <div class="container">
   <div class="row">
-    <div class="col-6">
-    <%= @costume.name %>
+    <div class="col-6 mt-6">
+      <h1>More information about the costume you are interrestted in: </h1>
+
+        <div class="card-trip">
+          <h1> Name of the costum: <%= @costume.name %></h1>
+          <%= image_tag @costume.image %>
+          <h4> Size: <%= @costume.size %></h4>
+          <h4> Price: <%= @costume.price %> $</h4>
+          <h3> Send a message to the owner: <%= @costume.user.name %></h3>
+        </div>
+    <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
+    <%= link_to "Reserve",costumes_path, class: "btn btn-primary" %>
     </div>
   </div>
 </div>
