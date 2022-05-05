@@ -15,7 +15,7 @@ def new
 end
 
 def create
-    @reservation = Reservation.new(booking_params)
+    @reservation = Reservation.new(reservation_params)
     @reservation.user = @user
     @reservation.costume = Costume.find(params[:costume_id])
     @reservation.status = "Rented"
