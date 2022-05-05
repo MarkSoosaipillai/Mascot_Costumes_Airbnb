@@ -15,9 +15,9 @@
         <td><%= r.start_date %></td>
         <td><%= r.end_date %></td>
         <td><%= r.status %></td>
-        <td><%= link_to "Reject this reantal", cancel_reservation_path(r), method: :patch,
+        <td><%= link_to "Reject this rental", cancel_reservation_path(r), method: :patch,
                 data: {confirm: 'Are you sure?'} %></td>
-        <td><%= link_to "Want for approve...??", approved_reservation_path(r), method: :patch,
+        <td><%= link_to "Approve this rental", approved_reservation_path(r), method: :patch,
                 data: {confirm: 'Are you sure?'} %></td>
 
       </tr>
