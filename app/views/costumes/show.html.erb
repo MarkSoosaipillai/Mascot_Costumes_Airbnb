@@ -12,7 +12,7 @@
             <div class="p-2"><h4> Price: <%= @costume.price %> $</h4></div>
           </div>
 
-          <h3> Send a message to the owner: <%= link_to @costume.user.name,"#", class:"text-warning"  %></h3>
+          <h3> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></h3>
         </div>
     <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
     <%= link_to "Delete", costume_path(@costume), method: :delete,
