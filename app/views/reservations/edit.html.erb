@@ -1,29 +1,6 @@
-<h1>Make a New Rental Reservation</h1>
-
-<% if @reservation.errors.any? %>
-  <div id="error_explanation">
-    <h2>
-      <%= pluralize(@reservation.errors.count, "error") %>
-      prohibited this Reservation from being saved:
-    </h2>
-
-    <ul>
-    <% @reservation.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
-
-<%= form_for @reservation do |f| %>
-	User: <%= current_user.name.titleize %><br>
-	<%= f.hidden_field(:user_id, :value => @reservation.user.id) %>
-	Costume: <%= @costume.name.capitalize %><br>
-	<%= f.hidden_field(:costume_id, :value => @costume_id.id) %>
-	Status: <%= f.text_field(:status) %><br>
-	Start Date:  <%= f.date_field(:start_date) %><br>
-	End Date: <%= f.date_field(:end_date) %><br>
-
-
-	<br><%= f.submit "Reserve This Costume" %>
+<h2>Edit a rental:</h2>
+<%= simple_form_for [@costume, @reservation] do |f| %>
+  <%= f.input :start_date, as: :date %>
+  <%= f.input :end_date, as: :date %>
+  <%= f.submit "Edit rental", class: "btn btn-primary" %>
 <% end %>

@@ -1,0 +1,20 @@
+<h2 style="text-align: center;">Create a Rental</h2>
+  <div class="form">
+  <%= simple_form_for [@costume, @reservation] do |f| %>
+    <div class="form-content">
+      <div class="left-form">
+        <%# <% picture = "" %>
+        <%= image_tag picture, class:"image-left-form", alt:@costume.name%>
+      </div>
+      <div class="right-form">
+        <div class="start-date">
+          <%= f.input :start_date, as: :date %>
+        </div>
+        <div class="end-date">
+          <%= f.input :end_date, as: :date %>
+        </div>
+      </div>
+    </div>
+    <%= f.submit "Create rental", class:"btn btn-grad submit" %>
+  <% end %>
+</div>

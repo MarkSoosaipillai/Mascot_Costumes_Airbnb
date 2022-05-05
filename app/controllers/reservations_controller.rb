@@ -1,5 +1,5 @@
 class ReservationsController < ApplicationController
-  before_action :find_reservation, only: [:show, :edit, :update, :cancel]
+  before_action :find_reservation, only: [:show, :edit, :update, :cancel, :approved]
   before_action :find_user
 
 def index
@@ -15,8 +15,8 @@ def create
     @reservation.user = current_user
     @reservation.costume = Costume.find(params[:costume_id])
     @reservation.status = "Pending"
-    if @reservation.save
-          redirect_to costume_path(params[:costume_id])
+    if @reservation.save!
+      redirect_to user_reservations_path(@user)
     else
       render 'costumes/show'
     end
@@ -27,7 +27,12 @@ def update
     redirect_to reservations_path
 end
 def cancel
-    @reservation.status = “Canceled”
+    @reservation.status = "Rejected"
+    @reservation.save!
+    redirect_to reservations_path
+end
+def approved
+    @reservation.status = "Approved"
     @reservation.save!
     redirect_to reservations_path
 end

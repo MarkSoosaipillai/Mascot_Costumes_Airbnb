@@ -5,12 +5,12 @@ Rails.application.routes.draw do
   # get '/costumes/', to: 'costumes#index'
   # get '/costumes/new', to: 'costumes#new'
   # get '/costumes/:id', to: 'costumes#show', as: :costume
-  resources :costumes, only: [:index, :new, :create, :show] do
-    resources :reservations, only: :create
-  end
+#   resources :costumes, only: [:index, :new, :create, :show] do
+#     resources :reservations, only: :create
+#   end
 
 
-  get '/users/:user_id/costumes', to: 'users#list_by_user'
+#   get '/users/:user_id/costumes', to: 'users#list_by_user'
 
 #   post '/costumes/', to: 'users#create'
 
@@ -33,6 +33,13 @@ resources :users do
     resources :reservations, only: [:show, :index]
 end
 
+resources :users, only: [:index, :show, :edit, :update]
+resources :costumes do
 
+    resources :reservations, only: [:new, :create]
+  end
 
+  resources :reservations, only: [:index, :show, :edit, :update]
+  patch "cancel_reservation/:id", to: "reservations#cancel", as: :cancel_reservation
+  patch "approved_reservation/:id", to: "reservations#approved", as: :approved_reservation
 end
