@@ -40,6 +40,7 @@ class CostumesController < ApplicationController
 
   def destroy
     @costume.destroy
+    redirect_to costumes_path
   end
 
   def list_by_user

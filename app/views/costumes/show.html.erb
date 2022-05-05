@@ -12,9 +12,11 @@
             <div class="p-2"><h4> Price: <%= @costume.price %> $</h4></div>
           </div>
 
-          <h3> Send a message to the owner: <%= @costume.user.name %></h3>
+          <h3> Send a message to the owner: <%= link_to @costume.user.name,"#", class:"text-warning"  %></h3>
         </div>
     <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
+    <%= link_to "Delete", costume_path(@costume), method: :delete,
+                data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
     </div>
       <div class="col-6 mt-6">
           <h2>Reserve me!</h2>
