@@ -15,7 +15,17 @@
           <h3> Send a message to the owner: <%= @costume.user.name %></h3>
         </div>
     <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
-    <%= link_to "Reserve",costumes_path, class: "btn btn-primary" %>
     </div>
+      <div class="col-6 mt-6">
+          <h2>Reserve me!</h2>
+         <%= simple_form_for [@costume, @reservation] do |f| %>
+        <%= f.input :start_date, as: :date , html5: true %>
+        <%= f.input :end_date, as: :date, html5: true%>
+        <%= f.submit "Reserve", class: "btn btn-success" %>
+      <% end %>
+
+      </div>
   </div>
+
+
 </div>

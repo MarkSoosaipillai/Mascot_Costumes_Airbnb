@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users
   root to: 'costumes#home'
-  get '/costumes/', to: 'costumes#index'
-  get '/costumes/new', to: 'costumes#new'
-  get '/costumes/:id', to: 'costumes#show', as: :costume
+  # get '/costumes/', to: 'costumes#index'
+  # get '/costumes/new', to: 'costumes#new'
+  # get '/costumes/:id', to: 'costumes#show', as: :costume
+  resources :costumes, only: [:index, :new, :create, :show] do
+    resources :reservations, only: :create
+  end
+
 
   get '/users/:user_id/costumes', to: 'users#list_by_user'
 
@@ -29,8 +33,6 @@ resources :users do
     resources :reservations, only: [:show, :index]
 end
 
-  resources :users
-  resources :costumes
-  resources :reservations
+
 
 end

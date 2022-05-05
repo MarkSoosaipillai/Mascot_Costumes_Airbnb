@@ -10,6 +10,7 @@ class CostumesController < ApplicationController
   end
 
   def show
+    @reservation = Reservation.new
   end
 
   def new
@@ -18,9 +19,15 @@ class CostumesController < ApplicationController
 
   def create
     @costume = Costume.new(costume_params)
-    @costume.user = @user
+    @costume.user = current_user
+
+    if @costume.image.nil?
+      @costume.image = "gritty.jpg"
+    end
+
+
     if @costume.save
-      redirect_to costume_path(@costume)
+       redirect_to costume_path(@costume)
     else
       flash[:error] = "wrong inputs, try again"
     end

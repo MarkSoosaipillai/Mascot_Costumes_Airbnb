@@ -43,11 +43,16 @@ end
 
 def create
     #Creates initial Reservation from Costumes#show view page form
-    @reservation = Reservation.create(reservation_params)
-    @costume = Costume.find_by(id: params[:reservation][:costume_id])
-    @user = User.find_by(id: params[:reservation][:user_id])
+    @reservation = Reservation.new(reservation_params)
+    @reservation.costume_id = params[:costume_id]
+    @reservation.user_id = current_user
+
+    if @reservation.save
+      redirect_to costume_path(@costume)
+    else
     #Renders the edit Reservation form for the user to finish filling out the Reservation details
-    render :edit
+    render :new
+    end
 end
 
 def edit
@@ -69,17 +74,17 @@ def update
                         message: reservation_params[:message],
                         owner_id: reservation_params[:owner_id])
 
-if @reservation.start_date != nil && @reservation.end_date != nil
+  if @reservation.start_date != nil && @reservation.end_date != nil
 
-if @reservation.valid?
-    flash[:succes] = "You have succesfully made your Rental Reservation!"
-    redirect_to reservation_path(@reseravtion)
-else
-    flash[:error] = "Please check your input data and try again."
-    redirect_to edit_reservation_path(@reseravtion)
-end
-    flash[:error] = "Please input a valid Start Date and End Date."
-    render :edit
+  if @reservation.valid?
+      flash[:succes] = "You have succesfully made your Rental Reservation!"
+      redirect_to reservation_path(@reseravtion)
+  else
+      flash[:error] = "Please check your input data and try again."
+      redirect_to edit_reservation_path(@reseravtion)
+  end
+      flash[:error] = "Please input a valid Start Date and End Date."
+      render :edit
 end
 
 def destroy
@@ -87,11 +92,12 @@ def destroy
     redirect_to user_path(current_user)
 end
 
-private
+  private
 
-def reservation_params
-    params.require(:reservation).permit(:user_id, :costume_id, :status, :start_date, :end_date, :message, :owner_id)
-end
+      def reservation_params
+          params.require(:reservation).permit(:user_id, :costume_id, :start_date, :end_date)
+      end
 
-end
+    end
+
 end
