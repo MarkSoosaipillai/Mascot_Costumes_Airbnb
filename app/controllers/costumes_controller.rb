@@ -27,7 +27,7 @@ class CostumesController < ApplicationController
 
 
     if @costume.save
-       redirect_to costume_path(@costume)
+       redirect_to root_path
     else
       flash[:error] = "wrong inputs, try again"
     end
