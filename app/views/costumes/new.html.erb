@@ -1,8 +1,12 @@
-<%= simple_form_for  @costume do |f| %>
-  <%= f.input :name %>
-  <%= f.input :descr %>
-  <%= f.input :price %>
-  <%= f.input :size, :collection => %w[Small Medium Large] %>
-  <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>
-  <%= f.submit 'Add' %>
-<% end %>
+<body style="background-color: floralwhite;">
+  <div class="container w-50">
+    <%= simple_form_for  @costume do |f| %>
+      <%= f.input :name %>
+      <%= f.input :descr %>
+      <%= f.input :price %>
+      <%= f.input :size, :collection => %w[Small Medium Large] %>
+      <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>
+      <%= f.submit 'Add', class:"btn btn-success" %>
+    <% end %>
+  </div>
+</body>
