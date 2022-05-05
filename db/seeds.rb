@@ -26,7 +26,7 @@ puts "Creating new costumes"
 imageArray = ["chiitan.jpg", "ford.jpg", "gritty.jpg", "mickey.jpg", "unicorn.jpg"]
 10.times do
     p new_costume =  Costume.new(name: Faker::FunnyName.name, descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), price: rand(30..100),
-                                  size: %w(small medium large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
+                                  size: %w(Small Medium Large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
                                   image:imageArray.sample(1)[0])
     new_costume.save
 end
@@ -40,7 +40,7 @@ puts "Creating new reservations"
     today = Date.today
 
     #The start date is chosen at random between today and the next 4 days, the end date is chosen at random between today + 5 and 9 days.
-    p new_reservation = Reservation.new(user_id:user_ids_list.sample(1)[0], costume_id: mascot_ids_list.sample(1)[0], status: %w(pending approved rejected).sample(1)[0],
+    p new_reservation = Reservation.new(user_id:user_ids_list.sample(1)[0], costume_id: mascot_ids_list.sample(1)[0], status: %w(Pending Approved Rejected).sample(1)[0],
                                           start_date: today + rand(0..4), end_date: today + rand(5..9), message: Faker::Lorem.sentence(word_count: 3, supplemental: true) )
 
       if new_reservation.valid? == false
