@@ -1,5 +1,4 @@
 class Costume < ApplicationRecord
-
   belongs_to :user
   has_many :reservations, dependent: :destroy
   validates :descr, length: { minimum: 1 }

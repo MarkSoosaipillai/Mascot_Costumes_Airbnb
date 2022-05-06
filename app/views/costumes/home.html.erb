@@ -4,9 +4,11 @@
   </div>
   <div class="row">
     <div class="cards my-5">
-      <% @costumes.each do |costume| %>
+      <% @costumes.take(4).each do |costume| %>
       <div class="card-trip p-3 ">
-         <%= cl_image_tag costume.image.key, height: 200, width:200, crop: :fill %>
+        <% costume.images.take(1).each do |image| %>
+          <%= cl_image_tag image.key, height: 200, width:200, crop: :fill %>
+        <% end %>
         <div class="card-trip-infos">
           <div>
             <h2><%= link_to costume.name, costume_path(costume) %></h2>
