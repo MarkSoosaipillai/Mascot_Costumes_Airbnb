@@ -6,6 +6,7 @@
       <%= f.input :price %>
       <%= f.input :size, :collection => %w[Small Medium Large] %>
       <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>
+      <%= f.input :image, as: :file, input_html: { multiple: true} %>
       <%= f.submit 'Add', class:"btn btn-success" %>
     <% end %>
   </div>

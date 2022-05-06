@@ -6,7 +6,7 @@
     <div class="cards my-5">
       <% @costumes.each do |costume| %>
       <div class="card-trip p-3 ">
-        <%= image_tag costume.image, width:200 %>
+         <%= cl_image_tag costume.image.key, height: 200, width:200, crop: :fill %>
         <div class="card-trip-infos">
           <div>
             <h2><%= link_to costume.name, costume_path(costume) %></h2>

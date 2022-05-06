@@ -21,9 +21,9 @@ class CostumesController < ApplicationController
     @costume = Costume.new(costume_params)
     @costume.user = current_user
 
-    if @costume.image.nil?
-      @costume.image = "gritty.jpg"
-    end
+    # if @costume.image.nil?
+    #   @costume.image = "gritty.jpg"
+    # end
 
 
     if @costume.save
@@ -58,7 +58,7 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id)
+    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, images: [])
   end
 
   def set_user
