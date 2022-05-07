@@ -2,6 +2,14 @@
   <div class="row">
     <div class="mt-6">
       <h1>See all the costumes</h1>
+        <%= form_tag costumes_path, method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          class: "form-control",
+          placeholder: "Find a costume"
+        %>
+        <%= submit_tag "Search", class: "btn btn-primary" %>
+      <% end %>
       <div class="cards my-5">
         <% @costumes.each do |costume| %>
           <div class="card-trip p-3">
