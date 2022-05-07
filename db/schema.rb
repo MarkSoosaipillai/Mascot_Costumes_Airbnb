@@ -53,6 +53,9 @@ ActiveRecord::Schema.define(version: 2022_05_05_235907) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "image"
+    t.float "latitude"
+    t.float "longitude"
+    t.string "address"
     t.index ["user_id"], name: "index_costumes_on_user_id"
   end
 

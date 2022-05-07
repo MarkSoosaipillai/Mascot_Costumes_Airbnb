@@ -1,4 +1,10 @@
 class Costume < ApplicationRecord
+
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+
+  categories = %w(Corporate Animal Sports Cartoon Wedding)
+
   belongs_to :user
   has_many :reservations, dependent: :destroy
   validates :name, :descr, presence: true
@@ -14,6 +20,8 @@ class Costume < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+
 
   private
 

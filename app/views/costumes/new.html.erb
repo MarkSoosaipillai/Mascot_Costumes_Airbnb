@@ -3,6 +3,9 @@
     <%= simple_form_for  @costume do |f| %>
       <%= f.input :name %>
       <%= f.input :descr %>
+      <%= f.input :address,
+              input_html: { data: { geocoder_target: "address" }, class: 'd-none'},
+              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
       <%= f.input :price %>
       <%= f.input :size, :collection => %w[Small Medium Large] %>
       <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>

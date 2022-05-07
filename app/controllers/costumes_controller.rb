@@ -7,11 +7,24 @@ class CostumesController < ApplicationController
   end
 
   def index
+    @costumes = Costume.all
+
+    @markers = @costumes.geocoded.map do |costume|
+        {
+            lat: costume.latitude,
+            lng: costume.longitude,
+            info_window: render_to_string(partial: "info_window", locals: { costume: costume }),
+            image_url: helpers.asset_url(costume.image)
+
+          }
+      end
+
     if params[:query].present?
       @costumes = Costume.search_by_name_and_descr(params[:query])
     else
       @costumes = Costume.all
     end
+
   end
 
   def show
@@ -23,6 +36,7 @@ class CostumesController < ApplicationController
   end
 
   def create
+    p costume_params
     @costume = Costume.new(costume_params)
     @costume.user = current_user
 
@@ -64,7 +78,9 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, images: [])
+
+    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, :address, images: [])
+
   end
 
   def set_user
