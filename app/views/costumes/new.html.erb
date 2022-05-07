@@ -10,7 +10,24 @@
       <%= f.input :size, :collection => %w[Small Medium Large] %>
       <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>
       <%= f.input :images, as: :file, input_html: { multiple: true} %>
-      <%= f.submit 'Add', class:"btn btn-success" %>
+      <%= f.submit 'Add', id: "#myModal", class:"btn btn-success trigger-btn", data: { toggle:"modal", target:"#myModal"}  %>
     <% end %>
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+	<div class="modal-dialog modal-confirm">
+		<div class="modal-content">
+			<div class="modal-header justify-content-center">
+				<div class="icon-box">
+					<i class="material-icons">&#xE876;</i>
+				</div>
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			</div>
+			<div class="modal-body text-center">
+				<h4>Success!</h4>
+				<p>You've successfully added a costume.</p>
+			</div>
+		</div>
+	</div>
+</div>
   </div>
 </body>
