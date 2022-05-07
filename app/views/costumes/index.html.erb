@@ -1,14 +1,14 @@
-<div class="container-fluid p-0">
-<div style="height: 600px; margin-top: -24px;"
+
+<div style="height: 300px; margin-top: -24px;"
         data-controller="mapbox"
         data-mapbox-markers-value="<%= @markers.to_json %>"
         data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-</div>
+
 <div class="container">
   <div class="row">
     <div class="mt-6">
-      <h1>See all the costumes</h1>
-        <div class="d-flex align-items-center justify-content-center">
+
+        <div class="d-flex align-items-center justify-content-center col-9 mt-5">
           <div class="flex-grow-1">
             <%= form_tag costumes_path, method: :get do %>
             <%= text_field_tag :query,
@@ -17,24 +17,27 @@
               placeholder: "Find a costume"
             %>
           </div>
-            <%= submit_tag "Search", class: "btn btn-info mx-2" %>
+            <%= submit_tag "Search", class: "btn-gradient mx-2" %>
         </div>
       <% end %>
       <div class="cards my-5">
         <% @costumes.each do |costume| %>
           <div class="card-trip p-3">
             <div class="mb-3 text-center">
-              <h1><%= link_to costume.name.upcase, costume_path(costume) %></h1>
+              <h2><%= link_to costume.name.capitalize, costume_path(costume) %></h2>
             </div>
             <% costume.images.take(1).each do |image| %>
-            <%= cl_image_tag image.key, :transformation => { :width => 200, :crop => "scale" } %>
+            <%= cl_image_tag image.key, :transformation=>[
+            { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"},
+            {:height=>300, :crop=>"scale"}
+            ] %>
             <% end %>
             <div class="card-trip-infos">
-              <div>
+              <div >
                 <p> <%= costume.descr %></p>
+                <p class="card-trip-pricing"><%= costume.price %>$</p>
+                <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
               </div>
-                <h2 class="card-trip-pricing"><%= costume.price %>$</h2>
-                <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
             </div>
           </div>
         <% end %>
