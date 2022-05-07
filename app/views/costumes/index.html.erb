@@ -27,7 +27,7 @@
               <h1><%= link_to costume.name.upcase, costume_path(costume) %></h1>
             </div>
             <% costume.images.take(1).each do |image| %>
-            <%= cl_image_tag image.key, :transformation => { :width => 200, :crop => "pad" } %>
+            <%= cl_image_tag image.key, :transformation => { :width => 200, :crop => "scale" } %>
             <% end %>
             <div class="card-trip-infos">
               <div>
