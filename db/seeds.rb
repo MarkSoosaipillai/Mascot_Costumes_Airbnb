@@ -14,7 +14,9 @@ User.destroy_all
 
 15.times do
     puts "Creating new users"
+     p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
      p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
+     admin.save
      new_user.save
 end
 
