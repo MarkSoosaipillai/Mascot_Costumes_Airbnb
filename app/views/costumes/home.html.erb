@@ -7,12 +7,9 @@
       <div class="card-trip p-3 ">
         <% costume.images.take(1).each do |image| %>
           <%= cl_image_tag image.key, :transformation=>[
-
-
-                            {:effect=>"outline:100", :color=>"lightblue"},
-
-                            {:height=>300, :crop=>"scale"}
-                            ] %>
+            { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"},
+            {:height=>300, :crop=>"scale"}
+            ] %>
          <% end %>
         <div class="card-trip-infos">
           <div>

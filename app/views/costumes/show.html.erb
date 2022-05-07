@@ -3,7 +3,7 @@
   <h1>More information about the costume you are interrested in: </h1>
     <div class="col-6 mt-6">
       <div class="card-trip p-3">
-          <h1> Costume: <%= @costume.name %></h1>
+          <h1> Costume: <%= @costume.name.capitalize %></h1>
           <div class="d-flex">
           <% @costume.images.each do |image| %>
             <div class="p-2"><%= cl_image_tag image.key, width: 200, height: 150, crop: :fill %></div>
