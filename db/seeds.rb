@@ -42,12 +42,60 @@ MTL_ADDRESSES = [
     '12225 Av de Saint-Castin, Montreal QC',
     '391 Rue de la Congrégation, Montreal QC'
   ]
-10.times do
-    p new_costume =  Costume.create(name: ["Chiitan", "Gritty", "Youpi!", "Mickey", "Rainbow Dash"].sample(1)[0], descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                                  size: %w(Small Medium Large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
-                                  image:imageArray.sample(1)[0])
-    new_costume.save
-end
+  puts  "Creating Costumes"
+
+  p chiitan = Costume.create(name: "Chiitan", descr: "Mischievous japanese mascot!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                              size: %w(Small Medium Large).sample(1)[0], category:"Cartoon", user_id:  user_ids_list.sample(1)[0],
+                              image: "chiitan.jpg" )
+    chiitan.save
+
+    p pink_dragron = Costume.create(name: "Pink Dragon", descr: "Chinese style!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                                    size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
+                                    image: "chinese costume.jpg" )
+     pink_dragron.save
+
+    p football_fan = Costume.create(name: "Rowdy", descr: "For american football fans!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                                    size: %w(Small Medium Large).sample(1)[0], category:"Sports", user_id:  user_ids_list.sample(1)[0],
+                                    image:"ford.jpg" )
+      football_fan.save
+    p gritty = Costume.create(name: "Gritty", descr: "Nice, but a little crazy!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                                    size: %w(Small Medium Large).sample(1)[0], category:"Sports", user_id:  user_ids_list.sample(1)[0],
+                                    image: "gritty.jpg"  )
+      gritty.save
+    p mickey = Costume.create(name: "Mickey", descr: "Perfect for your special day!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                              size: %w(Small Medium Large).sample(1)[0], category:"Wedding", user_id:  user_ids_list.sample(1)[0],
+                              image: "mickey.jpg"  )
+      mickey.save
+    p panda = Costume.create(name: "Cool Panda", descr: "Great for birthday parties!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                              size: %w(Small Medium Large).sample(1)[0], category:"Wedding", user_id:  user_ids_list.sample(1)[0],
+                              image: "panda.jpg"  )
+      panda.save
+    p unicorn = Costume.create(name: "Rainbow Dash", descr: "Perfect for tall people!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                              size: "Large", category:"Animal", user_id:  user_ids_list.sample(1)[0],
+                              image: "unicorn.jpg"  )
+      unicorn.save
+    p coffee = Costume.create(name: "Mr. Coffee", descr: "Show your &#10084;&#65039; for coffee!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                              size: %w(Small Medium Large).sample(1)[0], category:"Corporate", user_id:  user_ids_list.sample(1)[0],
+                              image: "coffee_cup.jpg"  )
+      if !coffee.valid?
+        puts coffee.errors.full_messages
+      end
+      coffee.save
+    p lobster = Costume.create(name: "Sophie the lobster", descr: "Who doesn't like lobsters?!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                              size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
+                              image: "panda.jpg"  )
+      lobster.save
+      p youpi = Costume.create(name: "Youpi!", descr: "Everyone's favourite!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+                                size: %w(Small Medium Large).sample(1)[0], category:"Corporate", user_id:  user_ids_list.sample(1)[0],
+                                image: "youpi.jpg"  )
+      youpi.save
+
+# 10.times do
+#     p new_costume =  Costume.create(name: ["Chiitan", "Gritty", "Youpi!", "Mickey", "Rainbow Dash"].sample(1)[0], descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
+#                                   size: %w(Small Medium Large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
+#                                   image:imageArray.sample(1)[0])
+#     new_costume.save
+# end
 #Retrieving the list of all mascot ids
 p mascot_ids_list = Costume.all.pluck(:id)
 
