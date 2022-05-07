@@ -1,6 +1,10 @@
 <div class="container">
-<div id="my_rentals">
-  <h1 style="text-align:center">My Rentals:</h1>
+<div class="tab">
+  <button class="tablinks" onclick="openRental(event, 'my_rentals')">My Rentals (<%= @my_reservations.size %>)</button>
+  <button class="tablinks" onclick="openRental(event, 'my_requests')">My Requests (<%= @my_requests.size %>)</button>
+  </div>
+<div id="my_rentals" class="tabcontent">
+  <h1 style="text-align:center">My Rentals (<%= @my_reservations.size %>)</h1>
   <br>
   <table style="table-layout: fixed; width: 100%;">
     <tr>
@@ -10,19 +14,19 @@
       <th>Status</th>
     </tr>
   <% @my_reservations.each do |r| %>
-      <% if r.user == @user && r.status != "Rejected" %>
-        <tr>
+         <tr>
           <td class="nr"><%= r.costume.name %></td>
           <td><%= r.start_date %></td>
           <td><%= r.end_date %></td>
           <td><%= r.status %></td>
+          <td><%= link_to "Cancel this reservation", cancel_reservation_path(r), method: :patch,
+                  data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %></td>
         </tr>
-      <% end %>
     <% end %>
   </table>
 </div>
-<div id="my_requests">
-  <h1 style="text-align:center">My Requests:</h1>
+<div id="my_requests" class="tabcontent">
+  <h1 style="text-align:center">My Requests (<%= @my_requests.size %>)</h1>
   <br>
   <table style="table-layout: fixed; width: 100%;">
     <tr>
@@ -32,7 +36,6 @@
       <th>Status</th>
     </tr>
   <% @my_requests.each do |r| %>
-      <% if r.status != "Rejected" %>
         <tr>
           <td class="nr"><%= r.costume.name %></td>
           <td><%= r.start_date %></td>
@@ -44,7 +47,6 @@
                   data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %></td>
         </tr>
       <% end %>
-    <% end %>
   </table>
 </div>
 </div>

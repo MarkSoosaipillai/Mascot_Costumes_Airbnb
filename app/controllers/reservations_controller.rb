@@ -3,16 +3,19 @@ class ReservationsController < ApplicationController
   before_action :find_user
 
 def index
-   @my_reservations = Reservation.where(user_id:current_user)
+   @my_reservations = Reservation.where(user_id:current_user).where.not(status:"Rejected")
     my_costume_ids = Costume.where(user_id:current_user).pluck(:id)
     @my_requests = []
 
    my_costume_ids.each do |id|
-      matching_results =  Reservation.where(costume_id:id)
+      matching_results =  Reservation.where(costume_id:id).where.not(status:"Rejected")
       matching_results.each do |result|
         @my_requests << result
       end
    end
+   ##Following variables are a count of reservation/requests belonging to the user where the status is not Rejected
+  #  @my_reservation_count = Reservation.where(user_id:current_user).where.not(status:"Rejected").count
+  #  @my_requests_count = @my_requests.where.not(status:"Rejected").count
 
 
 end
