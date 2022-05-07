@@ -14,7 +14,7 @@ User.destroy_all
 
 15.times do
     puts "Creating new users"
-     p new_user = User.new(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
+     p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
      new_user.save
 end
 
@@ -25,12 +25,11 @@ p user_ids_list = User.all.pluck(:id)
 puts "Creating new costumes"
 imageArray = ["chiitan.jpg", "ford.jpg", "gritty.jpg", "mickey.jpg", "unicorn.jpg"]
 10.times do
-    p new_costume =  Costume.new(name: ["Chiitan", "Gritty", "Youpi!", "Mickey", "Rainbow Dash"].sample(1)[0], descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), address: Faker::Address.full_address, price: rand(30..100),
+    p new_costume =  Costume.create(name: ["Chiitan", "Gritty", "Youpi!", "Mickey", "Rainbow Dash"].sample(1)[0], descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), address: Faker::Address.street_address, price: rand(30..100),
                                   size: %w(Small Medium Large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
                                   image:imageArray.sample(1)[0])
     new_costume.save
 end
-
 #Retrieving the list of all mascot ids
 p mascot_ids_list = Costume.all.pluck(:id)
 
@@ -40,7 +39,7 @@ puts "Creating new reservations"
     today = Date.today
 
     #The start date is chosen at random between today and the next 4 days, the end date is chosen at random between today + 5 and 9 days.
-    p new_reservation = Reservation.new(user_id:user_ids_list.sample(1)[0], costume_id: mascot_ids_list.sample(1)[0], status: %w(Pending Approved Rejected).sample(1)[0],
+    p new_reservation = Reservation.create(user_id:user_ids_list.sample(1)[0], costume_id: mascot_ids_list.sample(1)[0], status: %w(Pending Approved Rejected).sample(1)[0],
                                           start_date: today + rand(0..4), end_date: today + rand(5..9), message: Faker::Lorem.sentence(word_count: 3, supplemental: true) )
 
       if new_reservation.valid? == false
