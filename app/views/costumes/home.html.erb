@@ -1,21 +1,25 @@
  <%= render "banner" %>
-
 <div class="container ">
   <div class="row text-light">
   <h2>New arrivals</h2>
-    <div class="cards my-5">
+    <div class="cards">
       <% @costumes.last(4).each do |costume| %>
       <div class="card-trip p-3 ">
         <% costume.images.take(1).each do |image| %>
-          <%= cl_image_tag image.key, height: 200, width:200, crop: :fill %>
-        <% end %>
+          <%= cl_image_tag image.key, :transformation=>[
+
+
+                            {:effect=>"outline:100", :color=>"lightblue"},
+
+                            {:height=>300, :crop=>"scale"}
+                            ] %>
+         <% end %>
         <div class="card-trip-infos">
           <div>
             <h2><%= link_to costume.name, costume_path(costume) %></h2>
             <p> <%= costume.descr %></p>
           </div>
           <h2 class="card-trip-pricing"><%= costume.price %>$</h2>
-          <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
         </div>
       </div>
         <% end %>

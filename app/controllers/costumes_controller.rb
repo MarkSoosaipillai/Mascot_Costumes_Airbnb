@@ -42,7 +42,7 @@ class CostumesController < ApplicationController
     #   @costume.image = "gritty.jpg"
     # end
     if @costume.save
-       redirect_to root_path
+       redirect_to costumes_path(@costume)
     else
       flash[:error] = "wrong inputs, try again"
     end
