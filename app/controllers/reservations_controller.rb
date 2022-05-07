@@ -3,7 +3,18 @@ class ReservationsController < ApplicationController
   before_action :find_user
 
 def index
-   @reservations = Reservation.all
+   @my_reservations = Reservation.where(user_id:current_user)
+    my_costume_ids = Costume.where(user_id:current_user).pluck(:id)
+    @my_requests = []
+
+   my_costume_ids.each do |id|
+      matching_results =  Reservation.where(costume_id:id)
+      matching_results.each do |result|
+        @my_requests << result
+      end
+   end
+
+
 end
 def show; end
 def new

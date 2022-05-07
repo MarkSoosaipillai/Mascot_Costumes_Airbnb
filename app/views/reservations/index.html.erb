@@ -1,27 +1,50 @@
 <div class="container">
-<h1 style="text-align:center">My Rentals:</h1>
-<br>
-<table style="table-layout: fixed; width: 100%;">
-  <tr>
-    <th>Costume Name</th>
-    <th>Start Date</th>
-    <th>End Date</th>
-    <th>Status</th>
-  </tr>
- <% @reservations.each do |r| %>
-    <% if r.user == @user && r.status != "Rejected" %>
-      <tr>
-        <td class="nr"><%= r.costume.name %></td>
-        <td><%= r.start_date %></td>
-        <td><%= r.end_date %></td>
-        <td><%= r.status %></td>
-        <td><%= link_to "Reject this rental", cancel_reservation_path(r), method: :patch,
-                data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %></td>
-        <td><%= link_to "Approve this rental", approved_reservation_path(r), method: :patch,
-                data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %></td>
-
-      </tr>
+<div id="my_rentals">
+  <h1 style="text-align:center">My Rentals:</h1>
+  <br>
+  <table style="table-layout: fixed; width: 100%;">
+    <tr>
+      <th>Costume Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+    </tr>
+  <% @my_reservations.each do |r| %>
+      <% if r.user == @user && r.status != "Rejected" %>
+        <tr>
+          <td class="nr"><%= r.costume.name %></td>
+          <td><%= r.start_date %></td>
+          <td><%= r.end_date %></td>
+          <td><%= r.status %></td>
+        </tr>
+      <% end %>
     <% end %>
-  <% end %>
-</table>
+  </table>
+</div>
+<div id="my_requests">
+  <h1 style="text-align:center">My Requests:</h1>
+  <br>
+  <table style="table-layout: fixed; width: 100%;">
+    <tr>
+      <th>Costume Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Status</th>
+    </tr>
+  <% @my_requests.each do |r| %>
+      <% if r.status != "Rejected" %>
+        <tr>
+          <td class="nr"><%= r.costume.name %></td>
+          <td><%= r.start_date %></td>
+          <td><%= r.end_date %></td>
+          <td><%= r.status %></td>
+          <td><%= link_to "Reject this rental", cancel_reservation_path(r), method: :patch,
+                  data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %></td>
+          <td><%= link_to "Approve this rental", approved_reservation_path(r), method: :patch,
+                  data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
 </div>
