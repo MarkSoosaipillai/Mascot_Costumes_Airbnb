@@ -12,7 +12,9 @@ class CostumesController < ApplicationController
         {
             lat: costume.latitude,
             lng: costume.longitude,
-            info_window: render_to_string(partial: "info_window", locals: { costume: costume })
+            info_window: render_to_string(partial: "info_window", locals: { costume: costume }),
+            image_url: helpers.asset_url(costume.image)
+
           }
       end
   end
@@ -26,6 +28,7 @@ class CostumesController < ApplicationController
   end
 
   def create
+    p costume_params
     @costume = Costume.new(costume_params)
     @costume.user = current_user
 
@@ -66,7 +69,7 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id)
+    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, :address)
   end
 
   def set_user
