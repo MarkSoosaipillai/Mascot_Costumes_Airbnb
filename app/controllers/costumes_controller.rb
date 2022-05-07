@@ -7,7 +7,11 @@ class CostumesController < ApplicationController
   end
 
   def index
-    @costumes = Costume.all
+    if params[:query].present?
+      @costumes = Costume.search_by_name_and_descr(params[:query])
+    else
+      @costumes = Costume.all
+    end
   end
 
   def show
