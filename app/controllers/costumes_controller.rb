@@ -8,14 +8,12 @@ class CostumesController < ApplicationController
 
   def index
     @costumes = Costume.all
-
     @markers = @costumes.geocoded.map do |costume|
         {
             lat: costume.latitude,
             lng: costume.longitude,
             info_window: render_to_string(partial: "info_window", locals: { costume: costume }),
-            image_url: helpers.asset_url(costume.image)
-
+            image_url: costume.images.first.present? ? costume.images.first.url : helpers.asset_url("unicorn.jpg")
           }
       end
 
