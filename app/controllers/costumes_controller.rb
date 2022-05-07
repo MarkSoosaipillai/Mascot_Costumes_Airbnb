@@ -54,6 +54,7 @@ class CostumesController < ApplicationController
 
   def update
     @costume.update(costume_params)
+    redirect_to costumes_path
   end
 
   def destroy
