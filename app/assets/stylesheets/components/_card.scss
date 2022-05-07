@@ -3,13 +3,18 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 6px;
+  color: $gray;
 }
 
 .card-trip > img {
-  height: 200px;
+  height: 400px;
   width: 100%;
   object-fit: cover;
   background-size: cover;
+}
+.card-trip a {
+  text-decoration: none;
+  color: $orange;
 }
 
 .card-trip h2 {

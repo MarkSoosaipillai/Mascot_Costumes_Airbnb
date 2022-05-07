@@ -3,8 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: fixed;
-  height: 100px;
+  // position: fixed;
+  height: 25px;
   bottom: 0;
   width: 100%;
   padding: 0px 50px;
@@ -17,9 +17,9 @@
 }
 .footer-links a {
   color: $orange;
-  opacity: 0.15;
+  opacity: 0.4;
   text-decoration: none;
-  font-size: 24px;
+  font-size: 12px;
   padding: 0px 10px;
 }
 .footer-links a:hover {
@@ -28,4 +28,5 @@
 .footer-text {
   font-family: $body-font;
   color:$green;
+  font-size: 12px;
 }

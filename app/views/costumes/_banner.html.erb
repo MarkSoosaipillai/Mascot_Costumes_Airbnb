@@ -1,7 +1,19 @@
-<div class="banner">
-  <div class="container col-6 bg-light p-5 rounded-pill text-center" style="--bs-bg-opacity: .9;">
-    <h1> Mascot BnB  </h1>
-    <h3> Rent the most <strong>original</strong> mascot costumes !</h3>
-    <%= link_to "See all the costumes", costumes_path, class: "btn btn-gradient" %>
+  <div class="banner shadow mb-3">
+    <div class=" text-center d-flex justify-content-center align-items-center">
+      <div class="p-2">
+        <%= image_tag "colors.jpeg", class:" radius border border-light" %>
+      </div>
+      <div class="color-frame d-flex flex-column justify-content-around p-2">
+        <div class="d-flex flex-column justify-content-center">
+          <h1> Mascot BnB  </h1>
+          <h3> Rent the most <strong>original</strong> mascot costumes !</h3>
+        </div>
+        <%= link_to "Find your costume", costumes_path, class: "btn btn-gradient" %>
+      </div>
+      <div class="p-2">
+        <%= image_tag "colors green.jpeg", class:"radius border border-light " %>
+      </div>
+    </div>
   </div>
+<div class="radius">
 </div>

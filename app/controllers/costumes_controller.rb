@@ -1,6 +1,7 @@
 class CostumesController < ApplicationController
   before_action :set_user
   before_action :set_costume, only: [:show, :edit, :update, :destroy]
+
   def home
     @costumes = Costume.all
   end
@@ -17,6 +18,13 @@ class CostumesController < ApplicationController
 
           }
       end
+
+    if params[:query].present?
+      @costumes = Costume.search_by_name_and_descr(params[:query])
+    else
+      @costumes = Costume.all
+    end
+
   end
 
   def show
@@ -32,17 +40,18 @@ class CostumesController < ApplicationController
     @costume = Costume.new(costume_params)
     @costume.user = current_user
 
-    if @costume.image.nil?
-      @costume.image = "gritty.jpg"
-    end
-
-
+    # if @costume.image.nil?
+    #   @costume.image = "gritty.jpg"
+    # end
     if @costume.save
-       redirect_to costume_path(@costume)
+       redirect_to root_path
     else
       flash[:error] = "wrong inputs, try again"
     end
     # no need for app/views/costumes/create.html.erb
+  end
+
+  def edit
   end
 
   def update
@@ -69,7 +78,9 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, :address)
+
+    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, :address, images: [])
+
   end
 
   def set_user

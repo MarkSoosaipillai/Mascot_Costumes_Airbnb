@@ -5,9 +5,10 @@
       <div class="card-trip p-3">
           <h1> Costume: <%= @costume.name %></h1>
           <div class="d-flex">
-            <div class="p-2"><%= image_tag @costume.image, width:200 %></div>
-            <div class="p-2"><%= image_tag @costume.image, width:100 %></div>
-            <div class="p-2"><%= image_tag @costume.image, width:100 %></div>
+          <% @costume.images.each do |image| %>
+            <div class="p-2"><%= cl_image_tag image.key, width: 200, height: 150, crop: :fill %></div>
+
+          <% end %>
             <div class="p-2"><h4> Size: <%= @costume.size %></h4></div>
             <div class="p-2"><h4> Price: <%= @costume.price %> $</h4></div>
           </div>
@@ -15,6 +16,7 @@
           <h3> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></h3>
         </div>
     <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
+    <%= link_to "Update", edit_costume_path(@costume), class: "btn btn-primary"  %>
     <%= link_to "Delete", costume_path(@costume), method: :delete,
                 data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
     </div>

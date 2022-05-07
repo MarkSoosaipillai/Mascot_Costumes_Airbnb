@@ -8,13 +8,29 @@
   <div class="row">
     <div class="mt-6">
       <h1>See all the costumes</h1>
+        <div class="d-flex align-items-center justify-content-center">
+          <div class="flex-grow-1">
+            <%= form_tag costumes_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "form-control",
+              placeholder: "Find a costume"
+            %>
+          </div>
+            <%= submit_tag "Search 🔍", class: "btn btn-info mx-2" %>
+        </div>
+      <% end %>
       <div class="cards my-5">
         <% @costumes.each do |costume| %>
           <div class="card-trip p-3">
-            <%= image_tag costume.image, width:200 %>
+            <div class="mb-3 text-center">
+              <h1><%= link_to costume.name.upcase, costume_path(costume) %></h1>
+            </div>
+            <% costume.images.take(1).each do |image| %>
+            <%= cl_image_tag image.key, :transformation => { :width => 200, :crop => "pad" } %>
+            <% end %>
             <div class="card-trip-infos">
               <div>
-                <h2><%= link_to costume.name, costume_path(costume) %></h2>
                 <p> <%= costume.descr %></p>
               </div>
                 <h2 class="card-trip-pricing"><%= costume.price %>$</h2>

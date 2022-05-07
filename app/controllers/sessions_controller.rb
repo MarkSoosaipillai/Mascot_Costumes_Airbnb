@@ -1,11 +1,9 @@
 class SessionsController < ApplicationController
-
     def new
       #No code needed here, just a placeholder for the 'Get' action
     end
 
     def create
-
     end
 
     def destroy
@@ -13,5 +11,4 @@ class SessionsController < ApplicationController
       @_current_user = nil
       redirect_to '/'
     end
-
-    end
+end
