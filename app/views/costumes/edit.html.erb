@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6 mt-3 p-3 bg-light">
+      <h1>Edit the costume:</h1>
+      <%= simple_form_for  @costume do |f| %>
+      <%= f.input :name %>
+      <%= f.input :descr %>
+      <%= f.input :price %>
+      <%= f.input :size, :collection => %w[Small Medium Large] %>
+      <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>
+      <%= f.input :images, as: :file, input_html: { multiple: true} %>
+      <%= f.submit 'Update the changes', class:"btn btn-success" %>
+    <% end %>
+    </div>
+  </div>
+</div>
