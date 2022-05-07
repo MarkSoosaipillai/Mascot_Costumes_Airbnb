@@ -21,13 +21,13 @@ class CostumesController < ApplicationController
     @costume = Costume.new(costume_params)
     @costume.user = current_user
 
-    if @costume.image.nil?
-      @costume.image = "gritty.jpg"
-    end
+    # if @costume.image.nil?
+    #   @costume.image = "gritty.jpg"
+    # end
 
 
     if @costume.save
-       redirect_to costume_path(@costume)
+       redirect_to root_path
     else
       flash[:error] = "wrong inputs, try again"
     end
@@ -58,7 +58,7 @@ class CostumesController < ApplicationController
   end
 
   def costume_params
-    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id)
+    params.require(:costume).permit(:name, :descr, :price, :size, :category, :user_id, images: [])
   end
 
   def set_user
