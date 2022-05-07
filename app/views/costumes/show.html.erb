@@ -16,6 +16,7 @@
           <h3> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></h3>
         </div>
     <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
+    <%= link_to "Update", edit_costume_path(@costume), class: "btn btn-primary"  %>
     <%= link_to "Delete", costume_path(@costume), method: :delete,
                 data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
     </div>

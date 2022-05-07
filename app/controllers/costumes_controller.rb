@@ -1,6 +1,7 @@
 class CostumesController < ApplicationController
   before_action :set_user
   before_action :set_costume, only: [:show, :edit, :update, :destroy]
+
   def home
     @costumes = Costume.all
   end
@@ -24,14 +25,15 @@ class CostumesController < ApplicationController
     # if @costume.image.nil?
     #   @costume.image = "gritty.jpg"
     # end
-
-
     if @costume.save
        redirect_to root_path
     else
       flash[:error] = "wrong inputs, try again"
     end
     # no need for app/views/costumes/create.html.erb
+  end
+
+  def edit
   end
 
   def update
