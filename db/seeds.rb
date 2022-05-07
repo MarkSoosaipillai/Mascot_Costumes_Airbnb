@@ -90,13 +90,7 @@ MTL_ADDRESSES = [
                                 image: "youpi.jpg"  )
       youpi.save
 
-# 10.times do
-#     p new_costume =  Costume.create(name: ["Chiitan", "Gritty", "Youpi!", "Mickey", "Rainbow Dash"].sample(1)[0], descr: Faker::Lorem.sentence(word_count: 10, supplemental: true), address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-#                                   size: %w(Small Medium Large).sample(1)[0], category: %w(Corporate Animal Sports Cartoon Wedding).sample(1)[0], user_id:  user_ids_list.sample(1)[0],
-#                                   image:imageArray.sample(1)[0])
-#     new_costume.save
-# end
-#Retrieving the list of all mascot ids
+
 p mascot_ids_list = Costume.all.pluck(:id)
 
 puts "Creating new reservations"
