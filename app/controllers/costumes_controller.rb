@@ -42,9 +42,9 @@ class CostumesController < ApplicationController
     #   @costume.image = "gritty.jpg"
     # end
     if @costume.save
-       redirect_to costumes_path(@costume)
+       redirect_to costume_path(@costume)
     else
-      flash[:error] = "wrong inputs, try again"
+      flash[:error] = "Some information are missing."
     end
     # no need for app/views/costumes/create.html.erb
   end
@@ -54,7 +54,7 @@ class CostumesController < ApplicationController
 
   def update
     @costume.update(costume_params)
-    redirect_to costumes_path
+    redirect_to costume_path(@costume)
   end
 
   def destroy
