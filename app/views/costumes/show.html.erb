@@ -6,15 +6,20 @@
           <h1> Costume: <%= @costume.name.capitalize %></h1>
           <div class="d-flex">
           <% @costume.images.each do |image| %>
-            <div class="p-2"><%= cl_image_tag image.key, width: 200, height: 150, crop: :fill %></div>
+            <div class="p-2"><%= cl_image_tag image.key, width: 200, height: 150, crop: :fit %></div>
 
           <% end %>
             <div class="p-2"><h4> Size: <%= @costume.size %></h4></div>
             <div class="p-2"><h4> Price: <%= @costume.price %> $</h4></div>
           </div>
+<h4 class="costume-show__description-header font-text font-weight-regular font-colour-grey font-size-18">Description:</h4>
+    <% @costume.descr.split("\n").each do |description_paragraph| %>
+      <p class="font-text font-weight-light font-colour-grey font-size-16" style="margin-bottom: 16px;"><%= description_paragraph %></p>
+    <% end %>
 
-          <h3> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></h3>
+          <%# <h3> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></h3>
         </div>
+        <br>
     <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
     <%= link_to "Update", edit_costume_path(@costume), class: "btn btn-primary"  %>
     <%= link_to "Delete", costume_path(@costume), method: :delete,

@@ -1,11 +1,31 @@
-<div class="card-trip">
-  <%= image_tag "unicorn.jpg", alt:"unicorn" %>
-  <div class="card-trip-infos">
-    <div>
-      <h2>Unicorn costume</h2>
-      <p> Superb Unicorn Mascot Costume!</p>
+<div class="costume-card">
+
+    <div class="costume-card__cover-photo pt-2" style="text-align: center;">
+<% costume.images.take(1).each do |image| %>
+            <%= cl_image_tag image.key, width: 320, height: 180, crop: :fit%>
+            <% end %>
+
+      </div>
+
+  <div class="costume-card__avatar" style="background-image: url('<%= cl_image_path costume.user.profile_picture.key %>');"></div>
+
+  <%# <% favourite = costume.favourites.to_a.find { |fav| fav.user == current_user} %>
+
+
+
+  <div class="costume-card__body">
+    <%= link_to costume_path(costume), class: "text-decoration-none" do %>
+      <h2 class="costume-card__title font-text font-colour-charcoal font-weight-regular font-size-18"><%= costume.name %></h2>
+    <% end %>
+
+    <div class="costume-card__lower">
+      <p class="costume-card__date font-text font-colour-light-grey font-size-12">Montreal | <%= costume.created_at.strftime("%b %e, %Y") %></p>
+
+      <% if costume.price == 0 %>
+        <p class="costume-card__price font-text font-colour-charcoal font-weight-medium font-size-18"><strong>FREE</strong></p>
+      <% else %>
+        <p class="costume-card__price font-text font-colour-charcoal font-weight-medium font-size-18"><strong><%= number_to_currency costume.price %></strong></p>
+      <% end %>
     </div>
-    <h2 class="card-trip-pricing">$ 30</h2>
-    <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
   </div>
 </div>

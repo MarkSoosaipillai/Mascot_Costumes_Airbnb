@@ -12,13 +12,26 @@ Reservation.destroy_all
 Costume.destroy_all
 User.destroy_all
 
-15.times do
-    puts "Creating new users"
-     p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
-     p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
-     admin.save
-     new_user.save
-end
+puts "Creating admin users"
+    p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
+    admin.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/16020290?s=96&v=4"), filename: "admin", content_type: "image/jpg")
+    admin.save
+    p admin2 = User.create(name: 'Mark', email: 'mark@gmail.com', password: 'password')
+    admin2.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/96311326?v=4"), filename: "admin", content_type: "image/jpg")
+    admin2.save
+    p admin3 = User.create(name: 'Suzanne', email: 'suzanne@gmail.com', password: 'password')
+    admin3.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/73802863?v=4"), filename: "admin", content_type: "image/jpg")
+    admin3.save
+    p admin4 = User.create(name: 'Jean-Francois', email: 'jf@gmail.com', password: 'password')
+    admin4.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/50388199?v=4"), filename: "admin", content_type: "image/jpg")
+    admin4.save
+
+# 15.times do
+#     puts "Creating new users"
+#      p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
+#      new_user.profile_picture.attach(io: URI.open("https://etimg.etb2bimg.com/thumb/msid-89971365,imgsize-900486,width-1200,height-900,overlay-etbrandequity/louie-is-back-mortein-brings-back-brand-mascot-in-new-avatar.jpg"), filename: "admin", content_type: "image/jpg")
+#      new_user.save
+# end
 
 #Retrieving the list of all user ids
 p user_ids_list = User.all.pluck(:id)
@@ -47,36 +60,49 @@ MTL_ADDRESSES = [
   p chiitan = Costume.create(name: "Chiitan", descr: "Mischievous japanese mascot!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0], category:"Cartoon", user_id:  user_ids_list.sample(1)[0],
                               image: "chiitan.jpg" )
+                              chiitan.images.attach(io: URI.open("https://upload.wikimedia.org/wikipedia/commons/e/e2/Chiitan.jpg"), filename: "admin", content_type: "image/jpg")
     chiitan.save
 
     p pink_dragron = Costume.create(name: "Pink Dragon", descr: "Chinese style!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                                     size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
-                                    image: "chinese costume.jpg" )
-     pink_dragron.save
+                                    image: "chiitan.jpg" )
+                                    pink_dragron.images.attach(io: URI.open("https://ae01.alicdn.com/kf/HTB1WkXcIFXXXXbMXFXXq6xXFXXXU/Shanghai-Story-New-arrival-anime-The-wind-dancer-cosplay-costumes-Chinese-Girl-clothing-lolita-dress-2.jpg"), filename: "admin", content_type: "image/jpg")
+    pink_dragron.save
 
     p football_fan = Costume.create(name: "Rowdy", descr: "For american football fans!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                                     size: %w(Small Medium Large).sample(1)[0], category:"Sports", user_id:  user_ids_list.sample(1)[0],
-                                    image:"ford.jpg" )
-      football_fan.save
+                                    image: "ford.jpg" )
+                                    football_fan.images.attach(io: URI.open("https://i.pinimg.com/originals/6d/f6/cc/6df6cc00a780b186e396325e312c9d23.jpg"), filename: "admin", content_type: "image/jpg")
+    football_fan.save
     p gritty = Costume.create(name: "Gritty", descr: "Nice, but a little crazy!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                                     size: %w(Small Medium Large).sample(1)[0], category:"Sports", user_id:  user_ids_list.sample(1)[0],
                                     image: "gritty.jpg"  )
-      gritty.save
+                                    gritty.images.attach(io: URI.open("https://media.newyorker.com/photos/5bbd10430cdf452cf93ca22f/master/pass/Crouch-Gritty.jpg"), filename: "admin", content_type: "image/jpg")
+
+    gritty.save
     p mickey = Costume.create(name: "Mickey", descr: "Perfect for your special day!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0], category:"Wedding", user_id:  user_ids_list.sample(1)[0],
                               image: "mickey.jpg"  )
+                              mickey.images.attach(io: URI.open("https://i.pinimg.com/originals/a3/06/fd/a306fdd1bdccc4205872a1e432a0cfc5.jpg"), filename: "admin", content_type: "image/jpg")
+
       mickey.save
     p panda = Costume.create(name: "Cool Panda", descr: "Great for birthday parties!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0], category:"Wedding", user_id:  user_ids_list.sample(1)[0],
                               image: "panda.jpg"  )
+                              panda.images.attach(io: URI.open("https://ae01.alicdn.com/kf/HTB19oTGdpGWBuNjy0Fbq6z4sXXaX/Panda-mascot-For-Advertising-3M-Tall-Customize-For-Adult-cartoon-character-mascots-for-sale-mascotte-costumes.jpg"), filename: "admin", content_type: "image/jpg")
+
       panda.save
     p unicorn = Costume.create(name: "Rainbow Dash", descr: "Perfect for tall people!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                               size: "Large", category:"Animal", user_id:  user_ids_list.sample(1)[0],
                               image: "unicorn.jpg"  )
+                              unicorn.images.attach(io: URI.open("https://lovelygift4u.com/wp-content/uploads/2021/06/Lovelygift4u.com-mascot-1.jpeg"), filename: "admin", content_type: "image/jpg")
+
       unicorn.save
     p coffee = Costume.create(name: "Mr. Coffee", descr: "Show your &#10084;&#65039; for coffee!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0], category:"Corporate", user_id:  user_ids_list.sample(1)[0],
                               image: "coffee_cup.jpg"  )
+                              coffee.images.attach(io: URI.open("https://www.mascots-inc.com/wp-content/uploads/2020/07/Costa-Mascot.jpg"), filename: "admin", content_type: "image/jpg")
+
       if !coffee.valid?
         puts coffee.errors.full_messages
       end
@@ -84,10 +110,14 @@ MTL_ADDRESSES = [
     p lobster = Costume.create(name: "Sophie the lobster", descr: "Who doesn't like lobsters?!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
                               image: "panda.jpg"  )
+                              lobster.images.attach(io: URI.open("https://www.stuffedanimals.com/v/vspfiles/photos/MU47413-2.jpg?v-cache=1633952963"), filename: "admin", content_type: "image/jpg")
+
       lobster.save
       p youpi = Costume.create(name: "Youpi!", descr: "Everyone's favourite!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
                                 size: %w(Small Medium Large).sample(1)[0], category:"Corporate", user_id:  user_ids_list.sample(1)[0],
                                 image: "youpi.jpg"  )
+                                youpi.images.attach(io: URI.open("https://s.yimg.com/os/en/blogs/sptusmlbexperts/youppi050212.jpg"), filename: "admin", content_type: "image/jpg")
+
       youpi.save
 
 

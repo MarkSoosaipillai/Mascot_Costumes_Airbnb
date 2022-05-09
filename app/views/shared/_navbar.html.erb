@@ -13,31 +13,50 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
       <% if user_signed_in? %>
+        <li class="nav-item">Welcome, <strong><%= current_user.name.upcase %></strong></li>
         <li class="nav-item">
-          <%= link_to "Add Costume", new_costume_path, class:"btn-gradient p-1 ms-5" %>
+          <%= link_to "+ Add Costume", new_costume_path, class:"btn-gradient ms-5" %>
         </li>
-        <li class="nav-item">
+        <%# <li class="nav-item">
           <%= link_to "My Rentals", user_reservations_path(@user), class:"btn-gradient p-1 ms-5" %>
-        </li>
+        <%# </li> %>
+
 
 
         <li class="nav-item">
           <% if current_page?(root_path)%>
-            <%= link_to "Browse all Costumes", costumes_path, class:"btn-banner p-1 ms-5"  %>
+            <%= link_to "Browse all Costumes", costumes_path, class:"btn-banner p-1", style:"display: none"%>
           <% else %>
-            <%= link_to "Browse all Costumes", costumes_path, class:"btn-gradient p-1 ms-5" %>
+            <%# <%= link_to "Browse all Costumes", costumes_path, class:"btn-banner p-1"%>
           <% end %>
         </li>
 
-          <li>
+          <%# <li>
             <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn-banner p-1 ms-5"  %>
-          </li>
+          <%# </li> %>
+
+             <div class="dropdown ml-4 mr-5">
+  <a class="btn-gradient dropdown-toggle"
+        href="#" role="button" id="dropdownMenuLink"
+        data-bs-toggle="dropdown" aria-expanded="false">
+    Account
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li><%= link_to "My Rentals", user_reservations_path(@user), class:"dropdown-item" %></li>
+    <li><%= link_to "Profile Settings", edit_user_registration_path, class:"dropdown-item" %></li>
+    <li> <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"dropdown-item"  %></li>
+
+  </ul>
+</div>
         <% else %>
           <li>
             <%= link_to "Login", user_session_path, class:"btn-banner p-1 ms-5" %>
           </li>
         <% end %>
       </ul>
+
+
     </div>
   </div>
 </div>

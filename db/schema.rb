@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2022_05_05_235907) do
   create_table "costumes", force: :cascade do |t|
     t.string "name"
     t.text "descr"
-    t.float "price"
+    t.float "price", default: 0
     t.string "size"
     t.string "category"
     t.bigint "user_id", null: false
