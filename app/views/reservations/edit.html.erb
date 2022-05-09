@@ -1,6 +1,6 @@
-<h2>Edit a rental:</h2>
+<h2>Change a rental:</h2>
 <%= simple_form_for [@costume, @reservation] do |f| %>
   <%= f.input :start_date, as: :date %>
   <%= f.input :end_date, as: :date %>
-  <%= f.submit "Edit rental", class: "btn btn-primary" %>
+  <%= f.submit "Edit rental", class: "btn-orange" %>
 <% end %>

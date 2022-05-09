@@ -14,27 +14,27 @@
       <ul class="navbar-nav me-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Add Costume", new_costume_path, class:"btn-gradient p-1 ms-5" %>
+          <%= link_to "Add Costume", new_costume_path, class:"btn-gray p-1 ms-5" %>
         </li>
         <li class="nav-item">
-          <%= link_to "My Rentals", user_reservations_path(@user), class:"btn-gradient p-1 ms-5" %>
+          <%= link_to "My Rentals", user_reservations_path(@user), class:"btn-gray p-1 ms-5" %>
         </li>
 
 
         <li class="nav-item">
           <% if current_page?(root_path)%>
-            <%= link_to "Browse all Costumes", costumes_path, class:"btn-banner p-1 ms-5"  %>
+            <%= link_to "Browse all Costumes", costumes_path, class:"btn-orange p-1 ms-5"  %>
           <% else %>
-            <%= link_to "Browse all Costumes", costumes_path, class:"btn-gradient p-1 ms-5" %>
+            <%= link_to "Browse all Costumes", costumes_path, class:"btn-gray p-1 ms-5" %>
           <% end %>
         </li>
 
           <li>
-            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn-banner p-1 ms-5"  %>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn-orange p-1 ms-5"  %>
           </li>
         <% else %>
           <li>
-            <%= link_to "Login", user_session_path, class:"btn-banner p-1 ms-5" %>
+            <%= link_to "Login", user_session_path, class:"btn-orange p-1 ms-5" %>
           </li>
         <% end %>
       </ul>

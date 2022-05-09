@@ -17,7 +17,7 @@
               placeholder: "Find a costume"
             %>
           </div>
-            <%= submit_tag "Search", class: "btn-gradient mx-2" %>
+            <%= submit_tag "Search", class: "btn-gray mx-2" %>
         </div>
       <% end %>
       <div class="cards my-5">
@@ -32,12 +32,10 @@
             {:height=>300, :crop=>"scale"}
             ] %>
             <% end %>
-            <div class="card-trip-infos">
-              <div >
-                <p> <%= costume.descr %></p>
-                <p class="card-trip-pricing"><%= costume.price %>$</p>
-                <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
-              </div>
+            <div class="card-trip-infos d-flex justify-content-around">
+              <p> <%= costume.descr %></p>
+              <p class="card-trip-pricing"><%= costume.price %>$</p>
+              <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
             </div>
           </div>
         <% end %>

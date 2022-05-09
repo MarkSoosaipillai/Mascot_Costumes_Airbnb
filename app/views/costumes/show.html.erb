@@ -1,35 +1,39 @@
 <div class="container">
   <div class="row">
-  <h1>More information about the costume you are interrested in: </h1>
     <div class="col-6 mt-6">
       <div class="card-trip p-3">
-          <h1> Costume: <%= @costume.name.capitalize %></h1>
-          <div class="d-flex">
-          <% @costume.images.each do |image| %>
-            <div class="p-2"><%= cl_image_tag image.key, width: 200, height: 150, crop: :fill %></div>
-
-          <% end %>
-            <div class="p-2"><h4> Size: <%= @costume.size %></h4></div>
-            <div class="p-2"><h4> Price: <%= @costume.price %> $</h4></div>
+        <h4 class="text-center"> <%= @costume.name.capitalize %></h4>
+        <% @costume.images.each do |image| %>
+        <%= cl_image_tag image.key, :transformation=>[
+            { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"},
+            {:height=>300, :crop=>"scale"}
+            ] %>
+        <% end %>
+        <div class="card-trip-infos d-flex flex-column ">
+          <h4> <%= @costume.descr %></h4>
+          <div class="d-flex justify-content-between">
+            <h5> Size: <%= @costume.size %></h5>
+            <h5> Price: <%= @costume.price %> $</h5>
           </div>
-
-          <h3> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></h3>
+          <div class="">
+            <p> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></p>
+          </div>
         </div>
-    <%= link_to "Back to the list", costumes_path, class: "btn btn-primary" %>
-    <%= link_to "Update", edit_costume_path(@costume), class: "btn btn-primary"  %>
-    <%= link_to "Delete", costume_path(@costume), method: :delete,
-                data: {confirm: 'Are you sure?'}, class: "btn btn-primary" %>
+      </div>
+      <div class="mt-5 d-flex justify-content-around">
+        <%= link_to "Back to the list", costumes_path, class: "btn-gray" %>
+        <%= link_to "Update", edit_costume_path(@costume), class: "btn-gray"  %>
+        <%= link_to "Delete", costume_path(@costume), method: :delete,
+                    data: {confirm: 'Are you sure?'}, class: "btn-gray" %>
+      </div>
     </div>
-      <div class="col-6 mt-6">
-          <h2>Reserve me!</h2>
-         <%= simple_form_for [@costume, @reservation] do |f| %>
+    <div class="col-6 mt-6">
+        <%= simple_form_for [@costume, @reservation] do |f| %>
+        <h4>Reserve me!</h4>
         <%= f.input :start_date, as: :date , html5: true %>
         <%= f.input :end_date, as: :date, html5: true%>
-        <%= f.submit "Reserve", class: "btn btn-success" %>
-      <% end %>
-
-      </div>
+        <%= f.submit "Reserve", class: "btn-orange" %>
+        <% end %>
+    </div>
   </div>
-
-
 </div>

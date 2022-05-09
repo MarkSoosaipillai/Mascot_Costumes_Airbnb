@@ -1,33 +1,37 @@
-<body style="background-color: floralwhite;">
-  <div class="container w-50">
-    <%= simple_form_for  @costume do |f| %>
-      <%= f.input :name %>
-      <%= f.input :descr %>
-      <%= f.input :address,
-              input_html: { data: { geocoder_target: "address" }, class: 'd-none'},
-              wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
-      <%= f.input :price %>
-      <%= f.input :size, :collection => %w[Small Medium Large] %>
-      <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding]%>
-      <%= f.input :images, as: :file, input_html: { multiple: true} %>
-      <%= f.submit 'Add', id: "#myModal", class:"btn btn-success trigger-btn", data: { toggle:"modal", target:"#myModal"}  %>
-    <% end %>
-<!-- Modal HTML -->
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header justify-content-center">
-				<div class="icon-box">
-					<i class="material-icons">&#xE876;</i>
-				</div>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body text-center">
-				<h4>Success!</h4>
-				<p>You've successfully added a costume.</p>
-			</div>
-		</div>
-	</div>
-</div>
+<div class="container w-50 mw-100">
+  <div class="row">
+    <div class="col-9 ">
+      <div class="form">
+          <%= simple_form_for @costume  do |f| %>
+            <%= f.input :name, :label => 'Name of the mascotte costume you wish to propose for rental' %>
+            <%= f.input :descr, :label => 'Write an description of your costume', :hint => 'Hint: write an original description, to stand out' %>
+            <%= f.input :address, :label => 'The addresse where the costume can be picked up',
+                    input_html: { data: { geocoder_target: "address" }, class: 'd-none'},
+                    wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'] } } %>
+            <%= f.input :price, :label => 'Price per day'%>
+            <%= f.input :size, :collection => %w[Small Medium Large],:label => 'Pick up a size'  %>
+            <%= f.input :category, :collection => %w[Corporate Animal Sports Cartoon Wedding],:label => 'Pick up a category'%>
+            <%= f.input :images, as: :file, input_html: { multiple: true}, :hint => 'Hint: Good quality pictures attract the eyes' %>
+            <%= f.submit 'Add', id: "#myModal", class:"btn-orange", data: { toggle:"modal", target:"#myModal"}  %>
+          <% end %>
+            <!-- Modal HTML -->
+            <div id="myModal" class="modal fade">
+              <div class="modal-dialog modal-confirm">
+                <div class="modal-content">
+                  <div class="modal-header justify-content-center">
+                    <div class="icon-box">
+                      <i class="material-icons">&#xE876;</i>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  </div>
+                  <div class="modal-body text-center">
+                    <h4>Success!</h4>
+                    <p>You've successfully added a costume.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
   </div>
-</body>
+</div>

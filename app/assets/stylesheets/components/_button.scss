@@ -1,4 +1,4 @@
-.btn-gradient {
+.btn-gray {
   color: $white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -9,13 +9,14 @@
   text-decoration: none;
 }
 
-.btn-gradient:hover {
+.btn-gray:hover {
   background-color: slategray;
   color: white;
 
 }
 
-.btn-banner {
+
+.btn-orange, .invalid-feedback{
   color: white;
   border-top-left-radius: 8px;
   border-bottom-right-radius: 8px;
