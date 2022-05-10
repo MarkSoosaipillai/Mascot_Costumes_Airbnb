@@ -12,11 +12,10 @@
         <div class="card-trip-infos d-flex flex-column ">
           <h4> <%= @costume.descr %></h4>
           <div class="d-flex justify-content-between">
-            <h5> Size: <%= @costume.size %></h5>
-            <h5> Price: <%= @costume.price %> $</h5>
-          </div>
-          <div class="">
-            <p> Send a message to the owner: <%= link_to current_user.email,"#", class:"text-warning"  %></p>
+            <h5> Size: <br> <%= @costume.size %></h5>
+            <h5> Price: <br><%= @costume.price %> $</h5>
+            <h5> Category: <br><%= @costume.category %></h5>
+            <h5> Owner: <br><%= @owner.name %></h5>
           </div>
         </div>
       </div>
@@ -36,4 +35,30 @@
         <% end %>
     </div>
   </div>
+
+  <div class="container ">
+  <div class="row text-light">
+  <h2>Other costumes from <%= @owner.name %> </h2>
+    <div class="cards">
+      <% @other_costumes_by_owner.each do |costume| %>
+      <div class="card-trip p-3 ">
+        <% costume.images.take(1).each do |image| %>
+          <%= cl_image_tag image.key, :transformation=>[
+            { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale"},
+            {:height=>300, :crop=>"scale"}
+            ] %>
+         <% end %>
+        <div class="card-trip-infos">
+          <div>
+            <h2><%= link_to costume.name, costume_path(costume) %></h2>
+            <p> <%= costume.descr %></p>
+          </div>
+          <h2 class="card-trip-pricing"><%= costume.price %>$</h2>
+        </div>
+      </div>
+        <% end %>
+    </div>
+  </div>
+</div>
+
 </div>
