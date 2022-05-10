@@ -44,13 +44,26 @@ MTL_ADDRESSES = [
   ]
   puts  "Creating Costumes"
 
-  p chiitan = Costume.create(name: "Chiitan", descr: "Mischievous japanese mascot!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0], category:"Cartoon", user_id:  user_ids_list.sample(1)[0],
-                              image: "chiitan.jpg" )
-    chiitan.save
 
-    p pink_dragron = Costume.create(name: "Pink Dragon", descr: "Chinese style!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                                    size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
+
+
+  p chiitan = Costume.create(name: "Chiitan",
+                            descr: "Mischievous japanese mascot!",
+                            address: MTL_ADDRESSES.sample(1)[0],
+                            price: rand(30..100),
+                            size: %w(Small Medium Large).sample(1)[0],
+                            category:"Cartoon",
+                            user_id:  user_ids_list.sample(1)[0]
+                            )
+  file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652224514/production/nfaz3vuu1j49ebsykaoyj1l83qjk.jpg')
+  chiitan.images.attach(io: file, filename: 'chiitan.png', content_type: 'image/png')
+  chiitan.save
+
+  p pink_dragron = Costume.create(name: "Pink Dragon", descr: "Chinese style!",
+                                    address: MTL_ADDRESSES.sample(1)[0],
+                                    price: rand(30..100),
+                                    size: %w(Small Medium Large).sample(1)[0],
+                                    category:"Animal", user_id:  user_ids_list.sample(1)[0],
                                     image: "chinese costume.jpg" )
      pink_dragron.save
 
