@@ -46,3 +46,18 @@
 .underline {
   text-decoration-color: $gray;
 }
+
+.navbar-nav {
+  align-items: center;
+}
+
+.nav-item:first-child {
+  list-style-type: none;
+}
+
+.greeting {
+  flex-grow: 1;
+  color: $gray;
+  list-style-type: none;
+  padding-left: 26px;
+}
