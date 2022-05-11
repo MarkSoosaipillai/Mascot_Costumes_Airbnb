@@ -27,10 +27,12 @@
   object-fit: cover;
   object-position: center;
 }
+
 .nav-link:hover {
-  color: $orange;
+  color: $gray;
   opacity: 1;
 }
+
 .nav-link {
   color: $orange;
   opacity: .5;
@@ -39,4 +41,8 @@
 
 .tab-pane {
   color:$gray;
+}
+
+.underline {
+  text-decoration-color: $gray;
 }
