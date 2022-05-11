@@ -1,6 +1,7 @@
 class ReservationsController < ApplicationController
   before_action :find_reservation, only: [:show, :edit, :update, :cancel, :approved]
   before_action :find_user
+  before_action :find_costume, only: [:new, :create]
 
 def index
    @my_reservations = Reservation.where(user_id:current_user).where.not(status:"Rejected")
@@ -22,16 +23,14 @@ end
 def show; end
 def new
     @reservation = Reservation.new
-    @costume = Costume.find(params[:costume_id])
 end
-def create
-    @costume = Costume.find(params[:costume_id])
-    @owner = User.find(@costume.user_id)
-    @other_costumes_by_owner = Costume.where(user_id:@owner).where.not(id:params[:id])
 
+def create
+    @owner = @costume.user
+    @other_costumes_by_owner = @owner.costumes - [@costume]
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
-    @reservation.costume = Costume.find(params[:costume_id])
+    @reservation.costume = @costume
     @reservation.status = "Pending"
     if @reservation.save
       redirect_to user_reservations_path(@user)
@@ -63,5 +62,9 @@ def find_user
 end
 def find_reservation
     @reservation = Reservation.find(params[:id])
+end
+
+def find_costume
+  @costume = Costume.find(params[:costume_id])
 end
 end

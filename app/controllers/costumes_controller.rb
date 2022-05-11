@@ -27,8 +27,8 @@ class CostumesController < ApplicationController
 
   def show
     @reservation = Reservation.new
-    @owner = User.find(Costume.find(params[:id]).user_id)
-    @other_costumes_by_owner = Costume.where(user_id:@owner).where.not(id:params[:id])
+    @owner = @costume.user
+    @other_costumes_by_owner =  @owner.costumes - [@costume]
   end
 
   def new
