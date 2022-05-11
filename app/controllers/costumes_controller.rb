@@ -60,6 +60,7 @@ class CostumesController < ApplicationController
   end
 
   def destroy
+    # @costume = Costume.find(params[:id])
     @costume.destroy
     redirect_to costumes_path
   end
