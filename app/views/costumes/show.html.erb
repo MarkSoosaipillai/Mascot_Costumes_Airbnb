@@ -47,14 +47,16 @@
                     data: {confirm: 'Are you sure?'}, class: "btn-gray" %>
       </div>
     </div>
-    <div class="col-6 mt-6">
-        <%= simple_form_for [@costume, @reservation] do |f| %>
-        <h4>Reserve me!</h4>
-        <%= f.input :start_date, as: :date , html5: true %>
-        <%= f.input :end_date, as: :date, html5: true%>
-        <%= f.submit "Reserve", class: "btn-orange" %>
-        <% end %>
-    </div>
+    <% if current_user != @owner  && !current_user.nil?%>
+      <div class="col-6 mt-6">
+          <%= simple_form_for [@costume, @reservation] do |f| %>
+          <h4>Reserve me!</h4>
+          <%= f.input :start_date, as: :date , html5: true %>
+          <%= f.input :end_date, as: :date, html5: true%>
+          <%= f.submit "Reserve", class: "btn-orange" %>
+          <% end %>
+      </div>
+    <% end %>
   </div>
   <br>
   <div class="container">
