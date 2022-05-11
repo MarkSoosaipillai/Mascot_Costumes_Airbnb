@@ -29,7 +29,7 @@ def create
     @reservation.user = current_user
     @reservation.costume = Costume.find(params[:costume_id])
     @reservation.status = "Pending"
-    if @reservation.save!
+    if @reservation.save
       redirect_to user_reservations_path(@user)
     else
       render 'costumes/show'

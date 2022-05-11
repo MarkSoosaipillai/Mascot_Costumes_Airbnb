@@ -45,9 +45,9 @@
               <td><%= r.end_date %></td>
               <td><%= r.status %></td>
               <td><%= link_to "Reject", cancel_reservation_path(r), method: :patch,
-                      data: {confirm: 'Are you sure?'}, class: "btn-gray", remote: true %></td>
+                      data: {confirm: 'Are you sure?'}, class: "btn-gray", remote: true, anchor: "profile-tab" %></td>
               <td><%= link_to "Approve this rental", approved_reservation_path(r), method: :patch,
-                      data: {confirm: 'Are you sure?'}, class: "btn-gray", remote: true %></td>
+                      data: {confirm: 'Are you sure?'}, class: "btn-gray", remote: true, anchor: "profile-tab" %></td>
             </tr>
           <% end %>
         </table>
