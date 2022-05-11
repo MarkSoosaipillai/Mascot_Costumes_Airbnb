@@ -1,6 +1,6 @@
 <h2 style="text-align: center;">Create a Rental</h2>
   <div class="form">
-  <%= simple_form_for [@costume, @reservation] do |f| %>
+  <%= simple_form_for [@costume, @reservation] do |f|, remote: true %>
     <div class="form-content">
       <div class="left-form">
         <%# <% picture = "" %>

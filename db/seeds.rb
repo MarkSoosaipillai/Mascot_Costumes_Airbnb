@@ -12,13 +12,29 @@ Reservation.destroy_all
 Costume.destroy_all
 User.destroy_all
 
-15.times do
-  puts "Creating new users"
-  p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
-  p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
-  admin.save
-  new_user.save
-end
+
+puts "Creating admin users"
+    p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
+    admin.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/16020290?s=96&v=4"), filename: "admin", content_type: "image/jpg")
+    admin.save
+    p admin2 = User.create(name: 'Mark', email: 'mark@gmail.com', password: 'password')
+    admin2.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/96311326?v=4"), filename: "admin", content_type: "image/jpg")
+    admin2.save
+    p admin3 = User.create(name: 'Suzanne', email: 'suzanne@gmail.com', password: 'password')
+    admin3.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/73802863?v=4"), filename: "admin", content_type: "image/jpg")
+    admin3.save
+    p admin4 = User.create(name: 'Jean-Francois', email: 'jf@gmail.com', password: 'password')
+    admin4.profile_picture.attach(io: URI.open("https://avatars.githubusercontent.com/u/50388199?v=4"), filename: "admin", content_type: "image/jpg")
+    admin4.save
+
+# 15.times do
+#     puts "Creating new users"
+#      p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
+#      p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
+#      admin.save
+#      new_user.save
+# end
+
 
 #Retrieving the list of all user ids
 p user_ids_list = User.all.pluck(:id)
