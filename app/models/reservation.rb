@@ -11,10 +11,10 @@ class Reservation < ApplicationRecord
 
   def dates_cannot_be_in_the_past
     return if end_date.blank? || start_date.blank?
-    if start_date < Date.today - 1
+    if start_date < Date.today
       errors.add(:start_date, "can't be in the past!")
 
-    elsif end_date < Date.today - 1
+    elsif end_date < Date.today
       errors.add(:end_date, "can't be in the past!")
     end
   end
@@ -25,7 +25,4 @@ class Reservation < ApplicationRecord
       errors.add(:end_date, "cannot be before the start date")
     end
   end
-
-
-
 end
