@@ -25,6 +25,10 @@ def new
     @costume = Costume.find(params[:costume_id])
 end
 def create
+    @costume = Costume.find(params[:costume_id])
+    @owner = User.find(@costume.user_id)
+    @other_costumes_by_owner = Costume.where(user_id:@owner).where.not(id:params[:id])
+
     @reservation = Reservation.new(reservation_params)
     @reservation.user = current_user
     @reservation.costume = Costume.find(params[:costume_id])
