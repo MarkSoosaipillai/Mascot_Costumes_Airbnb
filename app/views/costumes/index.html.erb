@@ -1,14 +1,14 @@
 
 <div class="map-index"
-        data-controller="mapbox"
-        data-mapbox-markers-value="<%= @markers.to_json %>"
-        data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+  data-controller="mapbox"
+  data-mapbox-markers-value="<%= @markers.to_json %>"
+  data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
 
 <div class="container">
   <div class="row">
     <div class="mt-6">
-
-        <div class="d-flex align-items-center justify-content-center mt-5">
+        <div class="d-flex align-items-center justify-content-center mt-2">
           <div class="flex-grow-1">
             <%= form_tag costumes_path, method: :get do %>
             <%= text_field_tag :query,
@@ -16,15 +16,16 @@
               class: "form-control",
               placeholder: "Find a costume"
             %>
+          </div class="my-3">
+            <%= submit_tag "Search", class: "btn-gray mx-3" %>
           </div>
-            <%= submit_tag "Search", class: "btn-gray mx-2" %>
-        </div>
       <% end %>
       <div class="cards my-5">
         <% @costumes.each do |costume| %>
+        <%= link_to costume_path(costume), class: "text-decoration-none" do %>
           <div class="card-trip p-3">
             <div class="mb-3 text-center">
-              <h2><%= link_to costume.name.capitalize, costume_path(costume) %></h2>
+              <h2><%= costume.name.capitalize %></h2>
             </div>
             <% costume.images.take(1).each do |image| %>
             <%= cl_image_tag image.key, :transformation=>[
@@ -32,12 +33,13 @@
             {:height=>300, :crop=>"scale"}
             ] %>
             <% end %>
-            <div class="card-trip-infos d-flex justify-content-around">
+            <div class="card-trip-infos d-flex justify-content-around p-3">
               <p> <%= costume.descr %></p>
-              <p class="card-trip-pricing"><%= costume.price %>$</p>
+              <p class="card-trip-pricing">$<%= costume.price %></p>
               <%# <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" /> %>
             </div>
           </div>
+          <% end %>
         <% end %>
       </div>
      </div>
