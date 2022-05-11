@@ -1,17 +1,42 @@
 .mapboxgl-popup {
-    max-width: 200px;
-  }
+  max-width: 200px;
+}
 
-  .mapboxgl-popup-content {
-    text-align: center;
-    font-family: "Open Sans", sans-serif;
-  }
-  .mapboxgl-ctrl-geocoder {
-    max-width: none;
-    width: 100%;
-    border: 1px solid lightgrey;
-    box-shadow: none;
-  }
-.map-costume-name{
-    text-decoration: none;
+.mapboxgl-popup-content {
+text-align: center;
+font-family: "Open Sans", sans-serif;
+}
+
+.mapboxgl-ctrl-geocoder {
+max-width: none;
+width: 100%;
+border: 1px solid lightgrey;
+box-shadow: none;
+top: 12px;
+right: -4px;
+}
+
+.map-index {
+height: 420px;
+margin-top: -40px;
+margin-bottom: 18px;
+}
+
+
+@media (min-height: 100px) and (max-height: 575px) {
+.map-index {
+  max-height: 200px;
+}
+}
+
+@media (min-height: 575px) {
+.map-index {
+  max-height: 300px;
+}
+}
+
+@media (min-height: 700px) {
+.map-index {
+  max-height: 420px;
+}
 }
