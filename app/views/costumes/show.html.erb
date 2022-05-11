@@ -61,13 +61,14 @@
     <% end %>
   </div>
   <br>
-  <div class="container">
+  <div class="container mb-5">
   <div class="row text-light">
       <% if @other_costumes_by_owner.size > 0 %>
          <h2>Other costumes from <%= @owner.name %> </h2>
       <% end %>
         <div class="cards">
         <% @other_costumes_by_owner.each do |costume| %>
+              <%= link_to costume_path(costume), class: "text-decoration-none" do %>
         <div class="card-trip p-3 ">
           <% costume.images.take(1).each do |image| %>
             <%= cl_image_tag image.key, :transformation=>[
@@ -77,12 +78,13 @@
           <% end %>
           <div class="card-trip-infos">
             <div>
-              <h2><%= link_to costume.name, costume_path(costume) %></h2>
+              <h2><%= costume.name %></h2>
               <p> <%= costume.descr %></p>
             </div>
             <h2 class="card-trip-pricing"><%= costume.price %>$</h2>
           </div>
         </div>
+        <% end %>
         <% end %>
       </div>
   </div>

@@ -4,6 +4,7 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 6px;
   color: $gray;
+  max-height: 100vh;
 }
 
 .card-trip > img {
@@ -48,3 +49,7 @@
 .card-trip-pricing {
   color: $orange;
 	}
+
+.card-trip:hover {
+  background-color: rgb(237, 237, 237)  !important;
+}
