@@ -67,7 +67,11 @@ p chiitan = Costume.create(name: "Chiitan",
                           user_id:  user_ids_list.sample(1)[0]
                           )
 file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
-chiitan.images.attach(io: file, filename: 'chiitan.png', content_type: 'image/png')
+chiitan.images.attach(io: file, filename: 'chiitan.jpg', content_type: 'image/jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652277011/production/chiitan_3_kxzq1l.jpg')
+chiitan.images.attach(io: file, filename: 'chiitan.jpg', content_type: 'image/jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652277011/production/chiitan_2_cmtsmt.jpg')
+chiitan.images.attach(io: file, filename: 'chiitan.jpg', content_type: 'image/jpg')
 chiitan.save
 
 p pink_dragon = Costume.create(name: "Pink Dragon",
@@ -78,8 +82,8 @@ p pink_dragon = Costume.create(name: "Pink Dragon",
                               category:"Animal",
                               user_id:  user_ids_list.sample(1)[0]
                               )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
-pink_dragon.images.attach(io: file, filename: 'pink_dragon.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/chinese_costume.jpg')
+pink_dragon.images.attach(io: file, filename: 'pink_dragon.jpg', content_type: 'image/jpg')
 pink_dragon.save
 
 p football_fan = Costume.create(name: "Rowdy",
@@ -90,8 +94,8 @@ p football_fan = Costume.create(name: "Rowdy",
                                 category:"Sports",
                                 user_id:  user_ids_list.sample(1)[0]
                               )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
-football_fan.images.attach(io: file, filename: 'football_fan.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275241/development/rowdy.jpg')
+football_fan.images.attach(io: file, filename: 'football_fan.jpg', content_type: 'image/jpg')
 football_fan.save
 
 p gritty = Costume.create(name: "Gritty",
@@ -102,19 +106,23 @@ p gritty = Costume.create(name: "Gritty",
                           category:"Sports",
                           user_id:  user_ids_list.sample(1)[0]
                         )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275241/development/gritty.jpg')
 gritty.images.attach(io: file, filename: 'gritty.png', content_type: 'image/png')
 gritty.save
 
 p mickey = Costume.create(name: "Mickey",
-                          descr: "Perfect match with Minnie!",
+                          descr: "Perfect match ❤️ with Minnie!",
                           address: MTL_ADDRESSES.sample(1)[0],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Wedding",
                           user_id:  user_ids_list.sample(1)[0]
                          )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275242/development/mickey1.jpg')
+mickey.images.attach(io: file, filename: 'mickey.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275242/development/mickey_3_erjre3.jpg')
+mickey.images.attach(io: file, filename: 'mickey.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/mickey_dkdzjw.jpg')
 mickey.images.attach(io: file, filename: 'mickey.png', content_type: 'image/png')
 mickey.save
 
@@ -126,7 +134,7 @@ p panda = Costume.create(name: "Cool Panda",
                         category:"Wedding",
                         user_id: user_ids_list.sample(1)[0]
                        )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/panda.jpg')
 panda.images.attach(io: file, filename: 'panda.png', content_type: 'image/png')
 panda.save
 
@@ -138,7 +146,7 @@ p unicorn = Costume.create(name: "Rainbow Dash",
                           category:"Animal",
                           user_id: user_ids_list.sample(1)[0]
                           )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275240/development/unicorn.jpg')
 unicorn.images.attach(io: file, filename: 'unicorn.png', content_type: 'image/png')
 unicorn.save
 
@@ -150,7 +158,9 @@ p coffee = Costume.create(name: "Mr. Coffee",
                           category:"Corporate",
                           user_id:  user_ids_list.sample(1)[0]
                         )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275240/development/coffee_cup.jpg')
+coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652277011/production/cup_2_igoayx.jpg')
 coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
 coffee.save
 
@@ -162,7 +172,7 @@ p lobster = Costume.create(name: "Sophie the lobster",
                           category:"Animal",
                           user_id:  user_ids_list.sample(1)[0]
                         )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275241/development/lobster.jpg')
 lobster.images.attach(io: file, filename: 'lobster.png', content_type: 'image/png')
 lobster.save
 
