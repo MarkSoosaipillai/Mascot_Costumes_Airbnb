@@ -13,19 +13,18 @@ Costume.destroy_all
 User.destroy_all
 
 15.times do
-    puts "Creating new users"
-     p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
-     p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
-     admin.save
-     new_user.save
+  puts "Creating new users"
+  p admin = User.create(name: 'Andrii', email: 'andrii@gmail.com', password: 'password')
+  p new_user = User.create(name: Faker::Name.name, email: Faker::Internet.email, password: Faker::Internet.password(min_length: 8, max_length: 10))
+  admin.save
+  new_user.save
 end
 
 #Retrieving the list of all user ids
 p user_ids_list = User.all.pluck(:id)
 
-
 puts "Creating new costumes"
-imageArray = ["chiitan.jpg", "ford.jpg", "gritty.jpg", "mickey.jpg", "unicorn.jpg"]
+
 MTL_ADDRESSES = [
     '7503 Rue St Denis, Montreal QC',
     '251 Av Percival Montreal Ouest QC',
@@ -41,73 +40,144 @@ MTL_ADDRESSES = [
     '3555 Edouard-Montpetit, Montreal QC',
     '12225 Av de Saint-Castin, Montreal QC',
     '391 Rue de la Congrégation, Montreal QC'
-  ]
-  puts  "Creating Costumes"
+]
 
-  p chiitan = Costume.create(name: "Chiitan", descr: "Mischievous japanese mascot!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0], category:"Cartoon", user_id:  user_ids_list.sample(1)[0],
-                              image: "chiitan.jpg" )
-    chiitan.save
+p chiitan = Costume.create(name: "Chiitan",
+                          descr: "Mischievous japanese mascot!",
+                          address: MTL_ADDRESSES.sample(1)[0],
+                          price: rand(30..100),
+                          size: %w(Small Medium Large).sample(1)[0],
+                          category:"Cartoon",
+                          user_id:  user_ids_list.sample(1)[0]
+                          )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+chiitan.images.attach(io: file, filename: 'chiitan.png', content_type: 'image/png')
+chiitan.save
 
-    p pink_dragron = Costume.create(name: "Pink Dragon", descr: "Chinese style!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                                    size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
-                                    image: "chinese costume.jpg" )
-     pink_dragron.save
+p pink_dragon = Costume.create(name: "Pink Dragon",
+                              descr: "Chinese style!",
+                              address: MTL_ADDRESSES.sample(1)[0],
+                              price: rand(30..100),
+                              size: %w(Small Medium Large).sample(1)[0],
+                              category:"Animal",
+                              user_id:  user_ids_list.sample(1)[0]
+                              )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+pink_dragon.images.attach(io: file, filename: 'pink_dragon.png', content_type: 'image/png')
+pink_dragon.save
 
-    p football_fan = Costume.create(name: "Rowdy", descr: "For american football fans!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                                    size: %w(Small Medium Large).sample(1)[0], category:"Sports", user_id:  user_ids_list.sample(1)[0],
-                                    image:"ford.jpg" )
-      football_fan.save
-    p gritty = Costume.create(name: "Gritty", descr: "Nice, but a little crazy!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                                    size: %w(Small Medium Large).sample(1)[0], category:"Sports", user_id:  user_ids_list.sample(1)[0],
-                                    image: "gritty.jpg"  )
-      gritty.save
-    p mickey = Costume.create(name: "Mickey", descr: "Perfect for your special day!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0], category:"Wedding", user_id:  user_ids_list.sample(1)[0],
-                              image: "mickey.jpg"  )
-      mickey.save
-    p panda = Costume.create(name: "Cool Panda", descr: "Great for birthday parties!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0], category:"Wedding", user_id:  user_ids_list.sample(1)[0],
-                              image: "panda.jpg"  )
-      panda.save
-    p unicorn = Costume.create(name: "Rainbow Dash", descr: "Perfect for tall people!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: "Large", category:"Animal", user_id:  user_ids_list.sample(1)[0],
-                              image: "unicorn.jpg"  )
-      unicorn.save
-    p coffee = Costume.create(name: "Mr. Coffee", descr: "Show your &#10084;&#65039; for coffee!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0], category:"Corporate", user_id:  user_ids_list.sample(1)[0],
-                              image: "coffee_cup.jpg"  )
-      if !coffee.valid?
-        puts coffee.errors.full_messages
-      end
-      coffee.save
-    p lobster = Costume.create(name: "Sophie the lobster", descr: "Who doesn't like lobsters?!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0], category:"Animal", user_id:  user_ids_list.sample(1)[0],
-                              image: "panda.jpg"  )
-      lobster.save
-      p youpi = Costume.create(name: "Youpi!", descr: "Everyone's favourite!", address: MTL_ADDRESSES.sample(1)[0], price: rand(30..100),
-                                size: %w(Small Medium Large).sample(1)[0], category:"Corporate", user_id:  user_ids_list.sample(1)[0],
-                                image: "youpi.jpg"  )
-      youpi.save
+p football_fan = Costume.create(name: "Rowdy",
+                                descr: "For american football fans!",
+                                address: MTL_ADDRESSES.sample(1)[0],
+                                price: rand(30..100),
+                                size: %w(Small Medium Large).sample(1)[0],
+                                category:"Sports",
+                                user_id:  user_ids_list.sample(1)[0]
+                              )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+football_fan.images.attach(io: file, filename: 'football_fan.png', content_type: 'image/png')
+football_fan.save
 
+p gritty = Costume.create(name: "Gritty",
+                          descr: "Nice, but a little crazy!",
+                          address: MTL_ADDRESSES.sample(1)[0],
+                          price: rand(30..100),
+                          size:%w(Small Medium Large).sample(1)[0],
+                          category:"Sports",
+                          user_id:  user_ids_list.sample(1)[0]
+                        )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+gritty.images.attach(io: file, filename: 'gritty.png', content_type: 'image/png')
+gritty.save
+
+p mickey = Costume.create(name: "Mickey",
+                          descr: "Perfect match with Minnie!",
+                          address: MTL_ADDRESSES.sample(1)[0],
+                          price: rand(30..100),
+                          size: %w(Small Medium Large).sample(1)[0],
+                          category:"Wedding",
+                          user_id:  user_ids_list.sample(1)[0]
+                         )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+mickey.images.attach(io: file, filename: 'mickey.png', content_type: 'image/png')
+mickey.save
+
+p panda = Costume.create(name: "Cool Panda",
+                        descr: "Great for birthday parties!",
+                        address: MTL_ADDRESSES.sample(1)[0],
+                        price: rand(30..100),
+                        size: %w(Small Medium Large).sample(1)[0],
+                        category:"Wedding",
+                        user_id: user_ids_list.sample(1)[0]
+                       )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+panda.images.attach(io: file, filename: 'panda.png', content_type: 'image/png')
+panda.save
+
+p unicorn = Costume.create(name: "Rainbow Dash",
+                          descr: "Perfect for tall people!",
+                          address: MTL_ADDRESSES.sample(1)[0],
+                          price: rand(30..100),
+                          size: "Large",
+                          category:"Animal",
+                          user_id: user_ids_list.sample(1)[0]
+                          )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+unicorn.images.attach(io: file, filename: 'unicorn.png', content_type: 'image/png')
+unicorn.save
+
+p coffee = Costume.create(name: "Mr. Coffee",
+                          descr: "Show your &#10084;&#65039; for coffee!",
+                          address: MTL_ADDRESSES.sample(1)[0],
+                          price: rand(30..100),
+                          size: %w(Small Medium Large).sample(1)[0],
+                          category:"Corporate",
+                          user_id:  user_ids_list.sample(1)[0]
+                        )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
+coffee.save
+
+p lobster = Costume.create(name: "Sophie the lobster",
+                          descr: "Who doesn't like lobsters?!",
+                          address: MTL_ADDRESSES.sample(1)[0],
+                          price: rand(30..100),
+                          size: %w(Small Medium Large).sample(1)[0],
+                          category:"Animal",
+                          user_id:  user_ids_list.sample(1)[0]
+                        )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652065061/development/chiitan.jpg')
+lobster.images.attach(io: file, filename: 'lobster.png', content_type: 'image/png')
+lobster.save
+
+p youpi = Costume.create(name: "Youpi!",
+                        descr: "Everyone's favourite!",
+                        address: MTL_ADDRESSES.sample(1)[0],
+                        price: rand(30..100),
+                        size: %w(Small Medium Large).sample(1)[0],
+                        category:"Corporate",
+                        user_id:  user_ids_list.sample(1)[0]
+                        )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652135154/development/youpi.jpg')
+youpi.images.attach(io: file, filename: 'youpi.png', content_type: 'image/png')
+youpi.save
 
 p mascot_ids_list = Costume.all.pluck(:id)
 
 puts "Creating new reservations"
 
 8.times do
-    today = Date.today
+  today = Date.today
 
-    #The start date is chosen at random between today and the next 4 days, the end date is chosen at random between today + 5 and 9 days.
-    p new_reservation = Reservation.create(user_id:user_ids_list.sample(1)[0], costume_id: mascot_ids_list.sample(1)[0], status: %w(Pending Approved Rejected).sample(1)[0],
+#The start date is chosen at random between today and the next 4 days, the end date is chosen at random between today + 5 and 9 days.
+  p new_reservation = Reservation.create(user_id:user_ids_list.sample(1)[0], costume_id: mascot_ids_list.sample(1)[0], status: %w(Pending Approved Rejected).sample(1)[0],
                                           start_date: today + rand(0..4), end_date: today + rand(5..9), message: Faker::Lorem.sentence(word_count: 3, supplemental: true) )
 
-      if new_reservation.valid? == false
-           puts new_reservation.errors.full_messages
-     end
+  if new_reservation.valid? == false
+    puts new_reservation.errors.full_messages
+  end
     new_reservation.save
 end
-
 
 # Use this code to return reason why object cannot be saved
 # if new_user.valid? == false
