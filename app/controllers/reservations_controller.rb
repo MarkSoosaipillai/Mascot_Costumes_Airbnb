@@ -46,12 +46,12 @@ end
 def cancel
     @reservation.status = "Rejected"
     @reservation.save!
-    redirect_to reservations_path
+    redirect_to reservations_path(@reservation, anchor: '#request')
 end
 def approved
     @reservation.status = "Approved"
     @reservation.save!
-    redirect_to reservations_path
+    redirect_to reservations_path(@reservation, anchor: '#request')
 end
 private
 def reservation_params
