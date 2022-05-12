@@ -8,9 +8,11 @@
     <div class="col-6">
       <div class="my-4 d-flex justify-content-around">
         <%= link_to "Back to the list", costumes_path, class: "btn-gray" %>
+        <% if current_user == @owner  && user_signed_in? && @owner.name == current_user.name %>
         <%= link_to "Update", edit_costume_path(@costume), class: "btn-gray"  %>
         <%= link_to "Delete", costume_path(@costume), method: :delete,
             data: {confirm: 'Are you sure?'}, class: "btn-gray" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -87,7 +89,7 @@
       </div>
     </div>
   </div>
-    <% if current_user != @owner  && !current_user.nil?%>
+    <% if current_user != @owner  && user_signed_in? %>
       <div class="col-6">
           <%= simple_form_for [@costume, @reservation] do |f| %>
           <h4>Reserve me!</h4>
@@ -101,8 +103,14 @@
   <br>
   <div class="container mb-5">
   <div class="row text-light">
-      <% if @other_costumes_by_owner.size > 0 %>
-         <h2>Other costumes from <%= @owner.name %> </h2>
+      <% if @other_costumes_by_owner.size > 0 && current_user != @owner %>
+         <h2 style="text-align: center">Other costumes from <%= @owner.name %> </h2>
+      <% else %>
+            <% if @other_costumes_by_owner.size > 0%>
+              <h2 style="text-align: center">Other costumes from my collection </h2>
+              <% else %>
+              <h2 style="text-align: center">No other costumes from collection <%= link_to "Add New Costume To My Collection", new_costume_path, class:"nav-link p-1 ms-5" %></h2>
+              <% end %>
       <% end %>
         <div class="cards">
         <% @other_costumes_by_owner.each do |costume| %>
