@@ -214,22 +214,6 @@ file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/d
 pinguin.images.attach(io: file, filename: 'pinguin.png', content_type: 'image/png')
 pinguin.save
 
-p tigger = Costume.create(name: "Tigger!",
-  descr: "Glad to meet ya! Name's Tigger. T-I-double guh-er! That spells Tigger!",
-  address: "17 Rue Notre Dame O, Montreal QC",
-  price: rand(30..100),
-  size: %w(Small Medium Large).sample(1)[0],
-  category:"Cartoon",
-  user_id:  user_ids_list.sample(1)[0]
-  )
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigrou_2_q7setj.jpg')
-tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigour_2_vafoc7.jpg')
-tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigrou_tnqob8.jpg')
-tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
-tigger.save
-
 p minnie = Costume.create(name: "Minnie",
   descr: "Perfect match ❤️ with Mickey mouse!",
   address: MTL_ADDRESSES[4],
