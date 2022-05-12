@@ -36,8 +36,8 @@ puts "Creating admin users"
 # end
 
 
-#Retrieving the list of all user ids
-p user_ids_list = User.all.pluck(:id)
+#Retrieving the list of all user ids, excluded Mark from the list as we will be using his ID for the demo and we do not want him to own costumes or to have reservations before the demo.
+p user_ids_list = User.all.where.not(name:"Mark").pluck(:id)
 
 puts "Creating new costumes"
 
@@ -151,7 +151,7 @@ unicorn.images.attach(io: file, filename: 'unicorn.png', content_type: 'image/pn
 unicorn.save
 
 p coffee = Costume.create(name: "Mr. Coffee",
-                          descr: "Show your &#10084;&#65039; for coffee!",
+                          descr: "Show your love for coffee! ☕",
                           address: MTL_ADDRESSES.sample(1)[0],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
