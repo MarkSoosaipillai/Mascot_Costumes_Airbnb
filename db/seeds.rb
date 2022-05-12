@@ -51,7 +51,6 @@ MTL_ADDRESSES = [
     '4107 Boulevard Saint-Laurent, Montreal QC',
     '5930 Rue Hurteau, Montreal QC',
     '6730 44 Av, Montreal QC',
-    '1940 Jolicoeur Street, Montreal QC',
     '5240 Randall Av, Montreal QC',
     '3555 Edouard-Montpetit, Montreal QC',
     '12225 Av de Saint-Castin, Montreal QC',
@@ -60,7 +59,7 @@ MTL_ADDRESSES = [
 
 p chiitan = Costume.create(name: "Chiitan",
                           descr: "Mischievous japanese mascot!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[0],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Cartoon",
@@ -76,7 +75,7 @@ chiitan.save
 
 p pink_dragon = Costume.create(name: "Pink Dragon",
                               descr: "Chinese style!",
-                              address: MTL_ADDRESSES.sample(1)[0],
+                              address: MTL_ADDRESSES[1],
                               price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0],
                               category:"Animal",
@@ -88,7 +87,7 @@ pink_dragon.save
 
 p football_fan = Costume.create(name: "Rowdy",
                                 descr: "For american football fans!",
-                                address: MTL_ADDRESSES.sample(1)[0],
+                                address: MTL_ADDRESSES[2],
                                 price: rand(30..100),
                                 size: %w(Small Medium Large).sample(1)[0],
                                 category:"Sports",
@@ -100,7 +99,7 @@ football_fan.save
 
 p gritty = Costume.create(name: "Gritty",
                           descr: "Nice, but a little crazy!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[3],
                           price: rand(30..100),
                           size:%w(Small Medium Large).sample(1)[0],
                           category:"Sports",
@@ -112,7 +111,7 @@ gritty.save
 
 p mickey = Costume.create(name: "Mickey",
                           descr: "Perfect match ❤️ with Minnie!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[4],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Wedding",
@@ -128,7 +127,7 @@ mickey.save
 
 p panda = Costume.create(name: "Cool Panda",
                         descr: "Great for birthday parties!",
-                        address: MTL_ADDRESSES.sample(1)[0],
+                        address: MTL_ADDRESSES[5],
                         price: rand(30..100),
                         size: %w(Small Medium Large).sample(1)[0],
                         category:"Wedding",
@@ -140,7 +139,7 @@ panda.save
 
 p unicorn = Costume.create(name: "Rainbow Dash",
                           descr: "Perfect for tall people!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[6],
                           price: rand(30..100),
                           size: "Large",
                           category:"Animal",
@@ -152,7 +151,7 @@ unicorn.save
 
 p coffee = Costume.create(name: "Mr. Coffee",
                           descr: "Show your love for coffee! ☕",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[7],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Corporate",
@@ -166,7 +165,7 @@ coffee.save
 
 p lobster = Costume.create(name: "Sophie the lobster",
                           descr: "Who doesn't like lobsters?!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[8],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Animal",
@@ -178,7 +177,7 @@ lobster.save
 
 p youpi = Costume.create(name: "Youpi!",
                         descr: "Everyone's favourite!",
-                        address: MTL_ADDRESSES.sample(1)[0],
+                        address: MTL_ADDRESSES[9],
                         price: rand(30..100),
                         size: %w(Small Medium Large).sample(1)[0],
                         category:"Corporate",
