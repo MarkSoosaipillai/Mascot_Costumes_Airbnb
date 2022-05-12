@@ -54,7 +54,8 @@ MTL_ADDRESSES = [
     '5240 Randall Av, Montreal QC',
     '3555 Edouard-Montpetit, Montreal QC',
     '12225 Av de Saint-Castin, Montreal QC',
-    '391 Rue de la Congrégation, Montreal QC'
+    '391 Rue de la Congrégation, Montreal QC',
+    '5333 Avenue Casgrain, Montreal QC'
 ]
 
 p chiitan = Costume.create(name: "Chiitan",
@@ -159,8 +160,6 @@ p coffee = Costume.create(name: "Mr. Coffee",
                         )
 file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275240/development/coffee_cup.jpg')
 coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652277011/production/cup_2_igoayx.jpg')
-coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
 coffee.save
 
 p lobster = Costume.create(name: "Sophie the lobster",
@@ -186,6 +185,65 @@ p youpi = Costume.create(name: "Youpi!",
 file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652135154/development/youpi.jpg')
 youpi.images.attach(io: file, filename: 'youpi.png', content_type: 'image/png')
 youpi.save
+
+p pikachu = Costume.create(name: "Pikachu!",
+  descr: "Because yellow is the new black and batch #790 loves Pokemon",
+  address: MTL_ADDRESSES[13],
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Cartoon",
+  user_id:  user_ids_list.sample(1)[0]
+  )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/pokemon_3_ixsztg.jpg')
+pikachu.images.attach(io: file, filename: 'pikachu2.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275240/development/pokemon_costume_mskcha.jpg')
+pikachu.images.attach(io: file, filename: 'pikachu1.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/pokemon_2_v2p4uu.jpg')
+pikachu.images.attach(io: file, filename: 'pikachu3.png', content_type: 'image/png')
+pikachu.save
+
+p pinguin = Costume.create(name: "Pinguin!",
+  descr: "Perfect for the Canadian winter",
+  address: " 5170 Boul. Saint-Laurent, Montreal QC",
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Animal",
+  user_id:  user_ids_list.sample(1)[0]
+  )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/pinguin_k4ifq9.jpg')
+pinguin.images.attach(io: file, filename: 'pinguin.png', content_type: 'image/png')
+pinguin.save
+
+p tigger = Costume.create(name: "Tigger!",
+  descr: "Glad to meet ya! Name's Tigger. T-I-double guh-er! That spells Tigger!",
+  address: "17 Rue Notre Dame O, Montreal QC",
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Cartoon",
+  user_id:  user_ids_list.sample(1)[0]
+  )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigrou_2_q7setj.jpg')
+tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigour_2_vafoc7.jpg')
+tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigrou_tnqob8.jpg')
+tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
+tigger.save
+
+p minnie = Costume.create(name: "Minnie",
+  descr: "Perfect match ❤️ with Mickey mouse!",
+  address: MTL_ADDRESSES[4],
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Wedding",
+  user_id:  user_ids_list.sample(1)[0]
+ )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/minnie_ek8sdb.jpg')
+minnie.images.attach(io: file, filename: 'minnie.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/minnie_2_bm19yv.jpg')
+minnie.images.attach(io: file, filename: 'minnie.png', content_type: 'image/png')
+minnie.save
+
 
 p mascot_ids_list = Costume.all.pluck(:id)
 
