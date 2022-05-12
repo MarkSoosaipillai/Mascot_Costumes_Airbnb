@@ -36,7 +36,7 @@ puts "Creating admin users"
 # end
 
 
-#Retrieving the list of all user ids, excluded Mark from the list as we will be using his ID for the demo and we do not want him to own costumes or to have reservations before the demo.
+#Retrieving the list of all user ids, excluded J-F from the list as we will be using his ID for the demo and we do not want him to own costumes or to have reservations before the demo.
 p user_ids_list = User.all.where.not(name:"Jean-Francois").pluck(:id)
 
 puts "Creating new costumes"
