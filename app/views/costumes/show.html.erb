@@ -63,28 +63,15 @@
       </a>
       <div class="card-trip-infos d-flex flex-column ">
         <h5 class="p-2 text-warning"> <em><%= @costume.descr %></em></h5>
-        <div class="d-flex justify-content-between align-items-start">
-        <div class="d-flex flex-column justify-content-between">
-           <h6>
-            Size:
-           </h6>
-           <h6 class="text-warning">
-            <%= @costume.size %>
-           </h6>
-          <h6>
-            Category:
-          </h6>
-          <h6 class="text-warning">
-            <%= @costume.category %>
-          </h6>
-          <h6>
-            Owner:
-          </h6>
-          <h6 class="text-warning">
-            <%= @owner.name %>
-          </h6>
-        </div>
-          <h5 class="text-success"> $ <%= @costume.price %> </h5>
+        <div class="p-2 d-flex justify-content-between align-items-start">
+          <div class="d-flex flex-column justify-content-between">
+            <h6 class="text-warning"> Category: <%= @costume.category %></h6>
+            <h6 class="text-primary"> Owner: <%= @owner.name %></h6>
+          </div>
+          <div class="d-flex flex-column justify-content-between">
+            <h6 class="text-success"> Size: <%= @costume.size %> </h6>
+            <h5 class="text-success"> $ <%= @costume.price %> </h5>
+          </div>
         </div>
       </div>
     </div>
