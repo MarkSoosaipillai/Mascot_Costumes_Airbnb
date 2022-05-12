@@ -10,11 +10,12 @@
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <br>
-              <table style="table-layout: fixed; width: 100%;">
+              <table style="table-layout: fixed; width: 100%;" class="chart">
                 <tr>
                   <th>Costume Name</th>
                   <th>Start Date</th>
                   <th>End Date</th>
+                  <th>Owner</th>
                   <th>Status</th>
                 </tr>
               <% @my_reservations.each do |r| %>
@@ -22,8 +23,9 @@
                       <td class="nr"><%= r.costume.name %></td>
                       <td><%= r.start_date %></td>
                       <td><%= r.end_date %></td>
+                      <td><%= r.costume.user.name %></td>
                       <td><%= r.status %></td>
-                      <td><%= link_to "Cancel this reservation", cancel_reservation_path(r), method: :patch,
+                      <td><%= link_to "Cancel", cancel_reservation_path(r), method: :patch,
                               data: {confirm: 'Are you sure?'}, class: "btn-orange", remote: true %></td>
                     </tr>
                 <% end %>
@@ -31,11 +33,12 @@
     </div>
     <div class="tab-pane fade" id="profile" role="tabpanel"  aria-labelledby="profile-tab">
         <br>
-        <table style="table-layout: fixed; width: 100%;">
+        <table style="table-layout: fixed; width: 100%;"  class="chart">
         <tr>
           <th>Costume Name</th>
           <th>Start Date</th>
           <th>End Date</th>
+          <th>Requested By</th>
           <th>Status</th>
         </tr>
         <% @my_requests.each do |r| %>
@@ -43,6 +46,7 @@
               <td class="nr"><%= r.costume.name %></td>
               <td><%= r.start_date %></td>
               <td><%= r.end_date %></td>
+              <td><%= r.user.name %></td>
               <td><%= r.status %></td>
               <td><%= link_to "Reject", cancel_reservation_path(r), method: :patch, remote: true,
                       data: {confirm: 'Are you sure?'}, class: "btn-gray" %></td>

@@ -36,8 +36,8 @@ puts "Creating admin users"
 # end
 
 
-#Retrieving the list of all user ids
-p user_ids_list = User.all.pluck(:id)
+#Retrieving the list of all user ids, excluded J-F from the list as we will be using his ID for the demo and we do not want him to own costumes or to have reservations before the demo.
+p user_ids_list = User.all.where.not(name:"Jean-Francois").pluck(:id)
 
 puts "Creating new costumes"
 
@@ -51,16 +51,16 @@ MTL_ADDRESSES = [
     '4107 Boulevard Saint-Laurent, Montreal QC',
     '5930 Rue Hurteau, Montreal QC',
     '6730 44 Av, Montreal QC',
-    '1940 Jolicoeur Street, Montreal QC',
     '5240 Randall Av, Montreal QC',
     '3555 Edouard-Montpetit, Montreal QC',
     '12225 Av de Saint-Castin, Montreal QC',
-    '391 Rue de la Congrégation, Montreal QC'
+    '391 Rue de la Congrégation, Montreal QC',
+    '5333 Avenue Casgrain, Montreal QC'
 ]
 
 p chiitan = Costume.create(name: "Chiitan",
                           descr: "Mischievous japanese mascot!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[0],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Cartoon",
@@ -76,7 +76,7 @@ chiitan.save
 
 p pink_dragon = Costume.create(name: "Pink Dragon",
                               descr: "Chinese style!",
-                              address: MTL_ADDRESSES.sample(1)[0],
+                              address: MTL_ADDRESSES[1],
                               price: rand(30..100),
                               size: %w(Small Medium Large).sample(1)[0],
                               category:"Animal",
@@ -88,7 +88,7 @@ pink_dragon.save
 
 p football_fan = Costume.create(name: "Rowdy",
                                 descr: "For american football fans!",
-                                address: MTL_ADDRESSES.sample(1)[0],
+                                address: MTL_ADDRESSES[2],
                                 price: rand(30..100),
                                 size: %w(Small Medium Large).sample(1)[0],
                                 category:"Sports",
@@ -100,7 +100,7 @@ football_fan.save
 
 p gritty = Costume.create(name: "Gritty",
                           descr: "Nice, but a little crazy!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[3],
                           price: rand(30..100),
                           size:%w(Small Medium Large).sample(1)[0],
                           category:"Sports",
@@ -112,7 +112,7 @@ gritty.save
 
 p mickey = Costume.create(name: "Mickey",
                           descr: "Perfect match ❤️ with Minnie!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[4],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Wedding",
@@ -128,7 +128,7 @@ mickey.save
 
 p panda = Costume.create(name: "Cool Panda",
                         descr: "Great for birthday parties!",
-                        address: MTL_ADDRESSES.sample(1)[0],
+                        address: MTL_ADDRESSES[5],
                         price: rand(30..100),
                         size: %w(Small Medium Large).sample(1)[0],
                         category:"Wedding",
@@ -140,7 +140,7 @@ panda.save
 
 p unicorn = Costume.create(name: "Rainbow Dash",
                           descr: "Perfect for tall people!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[6],
                           price: rand(30..100),
                           size: "Large",
                           category:"Animal",
@@ -151,8 +151,8 @@ unicorn.images.attach(io: file, filename: 'unicorn.png', content_type: 'image/pn
 unicorn.save
 
 p coffee = Costume.create(name: "Mr. Coffee",
-                          descr: "Show your &#10084;&#65039; for coffee!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          descr: "Show your love for coffee! ☕",
+                          address: MTL_ADDRESSES[7],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Corporate",
@@ -160,13 +160,11 @@ p coffee = Costume.create(name: "Mr. Coffee",
                         )
 file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275240/development/coffee_cup.jpg')
 coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
-file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652277011/production/cup_2_igoayx.jpg')
-coffee.images.attach(io: file, filename: 'coffee.png', content_type: 'image/png')
 coffee.save
 
 p lobster = Costume.create(name: "Sophie the lobster",
                           descr: "Who doesn't like lobsters?!",
-                          address: MTL_ADDRESSES.sample(1)[0],
+                          address: MTL_ADDRESSES[8],
                           price: rand(30..100),
                           size: %w(Small Medium Large).sample(1)[0],
                           category:"Animal",
@@ -178,7 +176,7 @@ lobster.save
 
 p youpi = Costume.create(name: "Youpi!",
                         descr: "Everyone's favourite!",
-                        address: MTL_ADDRESSES.sample(1)[0],
+                        address: MTL_ADDRESSES[9],
                         price: rand(30..100),
                         size: %w(Small Medium Large).sample(1)[0],
                         category:"Corporate",
@@ -187,6 +185,65 @@ p youpi = Costume.create(name: "Youpi!",
 file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652135154/development/youpi.jpg')
 youpi.images.attach(io: file, filename: 'youpi.png', content_type: 'image/png')
 youpi.save
+
+p pikachu = Costume.create(name: "Pikachu!",
+  descr: "Because yellow is the new black and batch #790 loves Pokemon",
+  address: MTL_ADDRESSES[13],
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Cartoon",
+  user_id:  user_ids_list.sample(1)[0]
+  )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/pokemon_3_ixsztg.jpg')
+pikachu.images.attach(io: file, filename: 'pikachu2.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275240/development/pokemon_costume_mskcha.jpg')
+pikachu.images.attach(io: file, filename: 'pikachu1.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/pokemon_2_v2p4uu.jpg')
+pikachu.images.attach(io: file, filename: 'pikachu3.png', content_type: 'image/png')
+pikachu.save
+
+p pinguin = Costume.create(name: "Pinguin!",
+  descr: "Perfect for the Canadian winter",
+  address: " 5170 Boul. Saint-Laurent, Montreal QC",
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Animal",
+  user_id:  user_ids_list.sample(1)[0]
+  )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/pinguin_k4ifq9.jpg')
+pinguin.images.attach(io: file, filename: 'pinguin.png', content_type: 'image/png')
+pinguin.save
+
+p tigger = Costume.create(name: "Tigger!",
+  descr: "Glad to meet ya! Name's Tigger. T-I-double guh-er! That spells Tigger!",
+  address: "17 Rue Notre Dame O, Montreal QC",
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Cartoon",
+  user_id:  user_ids_list.sample(1)[0]
+  )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigrou_2_q7setj.jpg')
+tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigour_2_vafoc7.jpg')
+tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652390053/development/tigrou_tnqob8.jpg')
+tigger.images.attach(io: file, filename: 'tigger.png', content_type: 'image/png')
+tigger.save
+
+p minnie = Costume.create(name: "Minnie",
+  descr: "Perfect match ❤️ with Mickey mouse!",
+  address: MTL_ADDRESSES[4],
+  price: rand(30..100),
+  size: %w(Small Medium Large).sample(1)[0],
+  category:"Wedding",
+  user_id:  user_ids_list.sample(1)[0]
+ )
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/minnie_ek8sdb.jpg')
+minnie.images.attach(io: file, filename: 'minnie.png', content_type: 'image/png')
+file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/minnie_2_bm19yv.jpg')
+minnie.images.attach(io: file, filename: 'minnie.png', content_type: 'image/png')
+minnie.save
+
 
 p mascot_ids_list = Costume.all.pluck(:id)
 

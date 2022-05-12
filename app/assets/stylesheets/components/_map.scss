@@ -23,9 +23,10 @@ max-width: none;
 width: 100%;
 border: 1px solid lightgrey;
 box-shadow: none;
-top: 12px;
-right: -4px;
-display: none;
+}
+
+body > div.map-index.mapboxgl-map > div.mapboxgl-control-container > div.mapboxgl-ctrl-top-right > div {
+  display: none;
 }
 
 .map-index {
@@ -34,9 +35,13 @@ margin-top: -40px;
 margin-bottom: 18px;
 }
 
+.mapboxgl-ctrl-bottom-right {
+  display: none;
+}
 
-
-
+.mapboxgl-ctrl-logo {
+  display: none;
+}
 
 @media (min-height: 100px) and (max-height: 575px) {
 .map-index {

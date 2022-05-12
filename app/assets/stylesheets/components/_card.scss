@@ -4,7 +4,6 @@
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   border-radius: 6px;
   color: $gray;
-  max-height: 100vh;
 }
 
 .card-trip > img {
@@ -25,7 +24,7 @@
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
   margin: 0;
 }
@@ -47,7 +46,8 @@
 // }
 
 .card-trip-pricing {
-  color: $orange;
+  color: $green;
+  font-weight: bold;
 	}
 
 .card-trip:hover {
