@@ -1,4 +1,5 @@
 <div class="container">
+  <h6><strong><i class="fa-solid fa-angle-left"></i> <%= link_to "Back", costumes_path, class: "text-decoration-none text-primary" %></strong></h6>
   <div class="row">
     <div class="col-6 mt-6">
       <div class="card-trip p-3">
@@ -43,7 +44,6 @@
       </div>
     </div>
       <div class="mt-5 d-flex justify-content-around">
-        <%= link_to "Back to the list", costumes_path, class: "btn-gray" %>
         <%= link_to "Update", edit_costume_path(@costume), class: "btn-gray"  %>
         <%= link_to "Delete", costume_path(@costume), method: :delete,
                     data: {confirm: 'Are you sure?'}, class: "btn-gray" %>
