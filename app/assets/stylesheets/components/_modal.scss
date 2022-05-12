@@ -12,7 +12,7 @@ body {
 	border: none;
 }
 .modal-confirm .modal-header {
-	background: $orange;
+	background: $green;
 	border-bottom: none;
 	position: relative;
 	text-align: center;
@@ -21,6 +21,7 @@ body {
 	padding: 35px;
 }
 .modal-confirm h4 {
+  color: $green;
 	text-align: center;
 	font-size: 36px;
 	margin: 10px 0;
