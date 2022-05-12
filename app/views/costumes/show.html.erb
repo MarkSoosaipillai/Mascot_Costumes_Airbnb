@@ -1,22 +1,35 @@
 <div class="container">
   <div class="row">
+    <div class="col-6">
+      <div class="my-4 d-flex justify-content-around">
+        <%= link_to "Back to the list", costumes_path, class: "btn-gray" %>
+        <%= link_to "Update", edit_costume_path(@costume), class: "btn-gray"  %>
+        <%= link_to "Delete", costume_path(@costume), method: :delete,
+            data: {confirm: 'Are you sure?'}, class: "btn-gray" %>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-around">
     <div class="col-6 mt-6">
       <div class="card-trip p-3">
         <h4 class="text-center"> <%= @costume.name.capitalize %></h4>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
+          <div class="carousel-inner d-flex justify-content-around ">
             <% @costume.images.each do |image| %>
                <% if image == @costume.images.first %>
                   <div class="carousel-item active">
-                    <%= cl_image_tag image.key, :transformation=>[
-                                                { :dpr => "auto", :responsive => true, :width => "auto", :crop => "scale",
+                    <%= cl_image_tag image.key,  :transformation=>[
+                                                { :dpr => "auto", :responsive => true, :crop => "scale",
                                                 :height=>300, :crop=>"scale"}
                                                 ]
                     %>
                   </div>
                 <%else%>
                   <div class="carousel-item">
-                    <%= cl_image_tag image.key, height: 300, width: 400, crop: :fill %>
+                    <%= cl_image_tag image.key, :transformation=>[
+                                                { :dpr => "auto", :responsive => true, :crop => "scale",
+                                                :height=>300, :crop=>"scale"}
+                                                ] %>
                   </div>
                 <%end%>
             <%end%>
@@ -42,15 +55,9 @@
         </div>
       </div>
     </div>
-      <div class="mt-5 d-flex justify-content-around">
-        <%= link_to "Back to the list", costumes_path, class: "btn-gray" %>
-        <%= link_to "Update", edit_costume_path(@costume), class: "btn-gray"  %>
-        <%= link_to "Delete", costume_path(@costume), method: :delete,
-                    data: {confirm: 'Are you sure?'}, class: "btn-gray" %>
-      </div>
-    </div>
+  </div>
     <% if current_user != @owner  && !current_user.nil?%>
-      <div class="col-6 mt-6">
+      <div class="col-6">
           <%= simple_form_for [@costume, @reservation] do |f| %>
           <h4>Reserve me!</h4>
           <%= f.input :start_date, as: :date , html5: true %>
