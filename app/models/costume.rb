@@ -16,7 +16,7 @@ class Costume < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_descr,
-    against: [ :name, :descr ],
+    against: [ :name, :descr, :size, :category ],
     using: {
       tsearch: { prefix: true }
     }
