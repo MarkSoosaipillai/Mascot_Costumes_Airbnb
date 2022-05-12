@@ -24,7 +24,7 @@
 }
 
 .card-trip p {
-  font-size: 12px;
+  font-size: 14px;
   opacity: .7;
   margin: 0;
 }
@@ -46,7 +46,8 @@
 // }
 
 .card-trip-pricing {
-  color: $orange;
+  color: $green;
+  font-weight: bold;
 	}
 
 .card-trip:hover {
