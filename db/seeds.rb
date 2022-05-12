@@ -62,7 +62,7 @@ p chiitan = Costume.create(name: "Chiitan",
                           descr: "Mischievous japanese mascot!",
                           address: MTL_ADDRESSES[0],
                           price: rand(30..100),
-                          size: %w(Small Medium Large).sample(1)[0],
+                          size: "Large",
                           category:"Cartoon",
                           user_id:  user_ids_list.sample(1)[0]
                           )
@@ -78,7 +78,7 @@ p pink_dragon = Costume.create(name: "Pink Dragon",
                               descr: "Chinese style!",
                               address: MTL_ADDRESSES[1],
                               price: rand(30..100),
-                              size: %w(Small Medium Large).sample(1)[0],
+                              size: "Large",
                               category:"Animal",
                               user_id:  user_ids_list.sample(1)[0]
                               )
@@ -131,7 +131,7 @@ p panda = Costume.create(name: "Cool Panda",
                         address: MTL_ADDRESSES[5],
                         price: rand(30..100),
                         size: %w(Small Medium Large).sample(1)[0],
-                        category:"Wedding",
+                        category:"Animal",
                         user_id: user_ids_list.sample(1)[0]
                        )
 file = URI.open('https://res.cloudinary.com/degm2tmrv/image/upload/v1652275239/development/panda.jpg')
@@ -187,7 +187,7 @@ youpi.images.attach(io: file, filename: 'youpi.png', content_type: 'image/png')
 youpi.save
 
 p pikachu = Costume.create(name: "Pikachu!",
-  descr: "Because yellow is the new black and batch #790 loves Pokemon",
+  descr: "Yellow is the new black",
   address: MTL_ADDRESSES[13],
   price: rand(30..100),
   size: %w(Small Medium Large).sample(1)[0],
@@ -215,7 +215,7 @@ pinguin.images.attach(io: file, filename: 'pinguin.png', content_type: 'image/pn
 pinguin.save
 
 p minnie = Costume.create(name: "Minnie",
-  descr: "Perfect match ❤️ with Mickey mouse!",
+  descr: "Perfect match ❤️ with Mickey!",
   address: MTL_ADDRESSES[4],
   price: rand(30..100),
   size: %w(Small Medium Large).sample(1)[0],
