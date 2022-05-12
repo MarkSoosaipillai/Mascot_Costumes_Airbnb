@@ -15,6 +15,7 @@
                   <th>Costume Name</th>
                   <th>Start Date</th>
                   <th>End Date</th>
+                  <th>Owner</th>
                   <th>Status</th>
                 </tr>
               <% @my_reservations.each do |r| %>
@@ -22,6 +23,7 @@
                       <td class="nr"><%= r.costume.name %></td>
                       <td><%= r.start_date %></td>
                       <td><%= r.end_date %></td>
+                      <td><%= r.costume.user.name %></td>
                       <td><%= r.status %></td>
                       <td><%= link_to "Cancel this reservation", cancel_reservation_path(r), method: :patch,
                               data: {confirm: 'Are you sure?'}, class: "btn-orange", remote: true %></td>
@@ -36,6 +38,7 @@
           <th>Costume Name</th>
           <th>Start Date</th>
           <th>End Date</th>
+          <th>Requested By</th>
           <th>Status</th>
         </tr>
         <% @my_requests.each do |r| %>
@@ -43,6 +46,7 @@
               <td class="nr"><%= r.costume.name %></td>
               <td><%= r.start_date %></td>
               <td><%= r.end_date %></td>
+              <td><%= r.user.name %></td>
               <td><%= r.status %></td>
               <td><%= link_to "Reject", cancel_reservation_path(r), method: :patch,
                       data: {confirm: 'Are you sure?'}, class: "btn-gray", remote: true %></td>
