@@ -43,16 +43,18 @@ def update
     @reservation.update(reservation_params)
     redirect_to reservations_path
 end
+
 def cancel
     @reservation.status = "Rejected"
     @reservation.save!
-    redirect_to reservations_path(@reservation, anchor: '#request')
+    redirect_to reservations_path(anchor: "profile-tab")
 end
 def approved
     @reservation.status = "Approved"
     @reservation.save!
-    redirect_to reservations_path(@reservation, anchor: '#request')
+    redirect_to reservations_path(anchor: "profile-tab")
 end
+
 private
 def reservation_params
     params.require(:reservation).permit(:status, :start_date, :end_date)
